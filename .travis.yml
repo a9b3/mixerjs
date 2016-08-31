@@ -1,0 +1,25 @@
+language: node_js
+node_js:
+  - "6.1"
+
+sudo: required
+
+services:
+  - docker
+
+cache:
+  directories:
+    - node_modules
+
+install:
+  - npm install
+
+before_script:
+  - npm install karma-phantomjs-launcher --save-dev
+  - export CONTINUOUS_INTEGRATION=true
+
+script:
+  - npm test
+
+after_success:
+  - test $TRAVIS_BRANCH = "prod" && npm run deploy
