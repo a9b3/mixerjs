@@ -18,4 +18,5 @@
 
 .row {
   composes: flex-row;
+  flex-shrink: 0;
 }
