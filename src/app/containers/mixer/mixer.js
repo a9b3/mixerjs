@@ -1,10 +1,10 @@
 import styles from './mixer.scss'
 import React, { Component, PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
+import { observer } from 'mobx-react'
 
 import Channel from '../channel/channel.js'
 import ActionBar from './action-bar/action-bar.js'
-import { observer } from 'mobx-react'
 
 @observer
 @CSSModules(styles, {

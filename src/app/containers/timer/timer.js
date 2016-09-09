@@ -2,6 +2,7 @@ import styles from './timer.scss'
 import React, { Component, PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
 import { observer } from 'mobx-react'
+
 import state from 'state'
 
 @observer

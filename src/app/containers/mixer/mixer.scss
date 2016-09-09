@@ -9,7 +9,7 @@
 }
 
 .channels {
-  width: 100%;
   composes: flex-row;
+  width: 100%;
   overflow: auto;
 }

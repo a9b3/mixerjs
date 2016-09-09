@@ -1,5 +1,7 @@
 @import '~esayemm-styles/shared';
 
+$active_color: $blue_3;
+
 .timer {
   composes: flex-row;
 }
@@ -14,7 +16,7 @@
   }
 
   &.active {
-    background: $misc_peach;
-    box-shadow: inset 0 0 10px rgba(#fff, .2), 0px 0px 10px 0px $misc_peach;
+    background: $active_color;
+    box-shadow: inset 0 0 10px rgba(#fff, .2), 0px 0px 10px 0px $active_color;
   }
 }

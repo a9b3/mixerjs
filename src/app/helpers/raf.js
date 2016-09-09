@@ -5,7 +5,5 @@ export default function raf(cb) {
     interval = window.requestAnimationFrame(fn)
   }
 
-  return () => {
-    window.cancelAnimationFrame(interval)
-  }
+  return () => window.cancelAnimationFrame(interval)
 }
