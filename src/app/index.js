@@ -10,9 +10,9 @@ import useScroll from 'scroll-behavior'
 import { AppContainer } from 'react-hot-loader'
 import Root from './root.js'
 
-if (CONFIG.debug === false && navigator.serviceWorker) {
-  navigator.serviceWorker.register('/service-worker.js')
-}
+// if (CONFIG.debug === false && navigator.serviceWorker) {
+//   navigator.serviceWorker.register('/service-worker.js')
+// }
 
 const history = useScroll(browserHistory)
 
