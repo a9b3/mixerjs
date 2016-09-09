@@ -50,6 +50,7 @@
     "html-loader": "0.3.0",
     "html-webpack-plugin": "2.10.0",
     "image-webpack-loader": "1.6.3",
+    "json-loader": "^0.5.4",
     "karma": "^1.0.0",
     "karma-chrome-launcher": "^1.0.1",
     "karma-cli": "^1.0.0",
@@ -73,7 +74,8 @@
     "url-loader": "0.5.6",
     "webpack": "2.1.0-beta.15",
     "webpack-dev-server": "2.1.0-beta.0",
-    "webpack-load-plugins": "0.1.2"
+    "webpack-load-plugins": "0.1.2",
+    "worker-loader": "^0.7.1"
   },
   "dependencies": {
     "axios": "0.8.1",
@@ -83,6 +85,10 @@
     "history": "1.13.0",
     "html": "0.0.10",
     "invariant": "2.2.1",
+    "mobx": "^2.4.4",
+    "mobx-react": "^3.5.5",
+    "moment": "^2.14.1",
+    "node-uuid": "^1.4.7",
     "react": "15.2.0",
     "react-css-modules": "^3.7.8",
     "react-dom": "15.2.0",

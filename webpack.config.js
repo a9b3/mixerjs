@@ -80,6 +80,12 @@ function wpModule() {
       test: /\.json$/i,
       loaders: [ 'json' ],
     },
+    sounds: {
+      test: /\.(mp3|m4a|wav)$/i,
+      loaders: [
+        'file',
+      ],
+    },
   }
 
   if (env === 'production') {
@@ -159,6 +165,9 @@ const configs = {
     modules: [
       path.resolve('./src'),
       path.resolve('./src/app'),
+      path.resolve('./src/app/services'),
+      path.resolve('./src/app/containers'),
+      path.resolve('./src/app/components'),
       'node_modules',
     ],
   },
