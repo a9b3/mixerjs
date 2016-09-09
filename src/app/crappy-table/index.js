@@ -1,5 +1,0 @@
-export {default as Table} from './table-component.js'
-export {default as TableCell} from './table-cell/table-cell.js'
-export {default as TableRow} from './table-row/table-row.js'
-export {default as HeaderRow} from './header-row/header-row.js'
-export {default as HeaderCol} from './header-col/header-col.js'

@@ -49,7 +49,7 @@ export default class Slider extends Component {
     return yPos
   }
 
-  _setPosition = (evt, el, mouseClickOffset = 0) => {
+  _setPosition = (evt, el, mouseClickOffset) => {
     const yPos = this._getYPos(evt, el, mouseClickOffset)
     const value = yPos / (el.parentNode.offsetHeight - el.offsetHeight)
     this.props.onSelect(value)
@@ -70,17 +70,11 @@ export default class Slider extends Component {
     })
   }
 
-  onClick = (evt) => {
-    evt.preventDefault()
-    evt.stopPropagation()
-
-    this._setPosition(evt, this.buttonEl, this.mouseClickOffset)
-  }
-
   render() {
-    return <div styleName='slider' onClick={this.onClick}>
+    return <div styleName='slider'>
       <div styleName='bg'>
       </div>
+
       <div styleName='button'
         style={{
           top: `${this.state.position.y}px`,

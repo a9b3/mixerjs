@@ -39,30 +39,3 @@ if (module.hot) {
     )
   })
 }
-
-// import audioContext from './mixer/audioContext.js'
-// import Controller from './mixer/Controller.js'
-// import SoundSource from './mixer/SoundSource.js'
-// import clickMp3 from '../assets/click.mp3'
-// import Scheduler from './mixer/Scheduler/Scheduler.js'
-//
-// async function main() {
-//   const controller = new Controller()
-//
-//   // const soundSource = new SoundSource()
-//   // soundSource.outputNode.connect(audioContext.destination)
-//   // await soundSource.load(clickMp3)
-//   //
-//   // function handler(note, nextNoteTime) {
-//   //   console.log('hi', note, nextNoteTime)
-//   //   if ([1, 5, 9, 13].indexOf(note+1) !== -1) {
-//   //     soundSource.play({ startTime: nextNoteTime })
-//   //   }
-//   // }
-//
-//   // controller.toggleMetronome()
-//   // controller.setTempo(90)
-//   // controller.start()
-// }
-//
-// main()

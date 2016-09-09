@@ -8,6 +8,7 @@ $meter_color: #61ff02;
 }
 
 .channel {
+  flex-shrink: 0;
   composes: flex-col;
   background: $channel_bg;
   width: 80px;

@@ -2,7 +2,7 @@ import styles from './sound-meter.scss'
 import React, { Component, PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
 
-import Meter from '../meter/meter.js'
+import Meter from '../../component/meter/meter.js'
 import raf from 'helpers/raf'
 
 @CSSModules(styles, {
@@ -19,11 +19,11 @@ export default class SoundMeter extends Component {
   }
 
   componentDidMount() {
-    this.unsubcribe = raf(this.analyserHandler.bind(this))
+    this.unsubscribe = raf(this.analyserHandler.bind(this))
   }
 
   componentWillUnmount() {
-    this.unsubcribe()
+    this.unsubscribe()
   }
 
   averagesQueue = []

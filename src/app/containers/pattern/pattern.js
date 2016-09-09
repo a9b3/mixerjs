@@ -20,12 +20,13 @@ export default class Pattern extends Component {
     notesPerBeat: 8,
   }
 
-  addNote = (current32ndNote) => {
+  toggleNote = (current32ndNote) => {
     if (this.props.track.notes[current32ndNote]) {
       this.props.track.removeNote(current32ndNote)
     } else {
       this.props.track.addNote(current32ndNote, true)
     }
+    // trigger redraw
     this.setState({})
   }
 
@@ -36,7 +37,7 @@ export default class Pattern extends Component {
 
       notes.push(
         <div styleName={`note ${this.props.track.notes[current32ndNote] ? 'active' : ''}`}
-          onClick={this.addNote.bind(this, current32ndNote)}
+          onClick={this.toggleNote.bind(this, current32ndNote)}
           key={`note_${i}`}>
         </div>
       )

@@ -1,7 +1,7 @@
 {
-  "name": "react-starter-kit",
+  "name": "mixerjs",
   "version": "0.0.1",
-  "description": "Front-end starter kit with react, webpack, gulp, redux, postcss, babel",
+  "description": "Web daw",
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test karma start --single-run",
@@ -94,12 +94,7 @@
     "react-css-modules": "^3.7.8",
     "react-dom": "15.2.0",
     "react-helmet": "2.3.1",
-    "react-redux": "4.4.4",
     "react-router": "2.3.0",
-    "react-router-redux": "4.0.4",
-    "redux": "3.5.2",
-    "redux-logger": "2.0.4",
-    "redux-thunk": "1.0.0",
     "scroll-behavior": "0.8.1"
   }
 }

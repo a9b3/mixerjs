@@ -2,17 +2,10 @@ import styles from './controller.scss'
 import React, { Component, PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
 import { observer } from 'mobx-react'
+
 import state from 'state'
 import moment from 'moment'
-import raf from 'helpers/raf'
-
-function pad(str) {
-  str = String(str)
-  if (str.length < 2) {
-    return '0' + str
-  }
-  return str
-}
+import { raf, padStr }  from 'helpers'
 
 @observer
 @CSSModules(styles, {
@@ -96,18 +89,14 @@ export default class Controller extends Component {
         </div>
 
         <div styleName='item'>
-          {
-            this.state.isPlaying
-              ? this.getDisplayTime()
-              : '00:00:00'
-          }
+          { this.state.isPlaying ? this.getDisplayTime() : '00:00:00' }
         </div>
 
         <div styleName='item'>
           <div>
-            {pad(this.state.currentBarsPlayed)}.
-            {pad(this.state.currentBar)}.
-            {pad(this.state.currentBeat)}
+            {padStr(this.state.currentBarsPlayed, 2, '0')}.
+            {padStr(this.state.currentBar, 2, '0')}.
+            {padStr(this.state.currentBeat, 2, '0')}
           </div>
         </div>
       </div>
@@ -125,9 +114,6 @@ export default class Controller extends Component {
           onClick={state.controller.toggleMetronome.bind(state.controller)}>
           M
         </div>
-      </div>
-
-      <div styleName='section'>
       </div>
     </div>
   }

@@ -1,9 +1,11 @@
 @import '~esayemm-styles/shared';
 
+$main_bg: $dark_1;
+
 .main {
   composes: flex-col;
   height: 100vh;
-  background: $dark_1;
+  background: $main_bg;
 }
 
 .row {
@@ -14,10 +16,4 @@
   flex: 1 1 auto;
   overflow: hidden;
   height: 0px;
-}
-
-.test {
-  background: black;
-  width: 2000px;
-  height: 2000px;
 }

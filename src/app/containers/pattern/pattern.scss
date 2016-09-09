@@ -1,5 +1,9 @@
 @import '~esayemm-styles/shared';
 
+$active_color: $blue_1;
+$bar_color: $dark_1;
+$note_color: $dark_3;
+
 .pattern {
   height: 100%;
   flex-grow: 1;
@@ -11,7 +15,7 @@
   composes: flex-row;
   flex-grow: 1;
   margin: 2px;
-  background: $dark_1;
+  background: $bar_color;
 }
 
 .beat {
@@ -19,7 +23,7 @@
   flex-grow: 1;
 
   &:nth-child(odd) {
-    background: darken($dark_1, 2);
+    background: darken($bar_color, 5);
   }
 }
 
@@ -27,17 +31,19 @@
   margin: 1px;
   flex-grow: 1;
   margin-top: 10px;
-  background: $dark_3;
+  background: $note_color;
+  transition: background .2s;
 
   &:hover {
     cursor: pointer;
   }
 
   &:nth-child(even) {
-    background: darken($dark_3, 1);
+    background: darken($note_color, 1);
   }
 
   &.active {
-    background: $misc_peach;
+    background: $active_color;
+    transition: background .2s;
   }
 }

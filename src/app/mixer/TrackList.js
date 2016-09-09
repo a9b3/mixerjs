@@ -4,10 +4,6 @@ import Track from './Track.js'
 export default class TrackList {
   @observable tracks = []
 
-  constructor() {
-
-  }
-
   addTrack(...args) {
     const track = new Track(...args)
     this.tracks.push(track)

@@ -29,12 +29,14 @@ export default class Meter extends Component {
 
   render() {
     return <div styleName='container'>
-      <div styleName={`peak ${this.props.value >= 100 ? 'active' : ''}`}>
-      </div>
+      <div styleName={`peak ${this.props.value >= 100 ? 'active' : ''}`} />
+
       <div styleName='meter'>
-        <div styleName='inner' style={{
-          transform: this.valueToTransformTranslate(this.props.value),
-        }}/>
+        <div styleName='inner'
+          style={{
+            transform: this.valueToTransformTranslate(this.props.value),
+          }}
+        />
       </div>
     </div>
   }

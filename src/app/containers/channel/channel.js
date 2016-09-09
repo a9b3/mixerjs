@@ -3,23 +3,11 @@ import React, { Component, PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
 import { observer } from 'mobx-react'
 
-import Meter from '../meter/meter.js'
-import Slider from '../slider/slider.js'
-import Knob from '../knob/knob.js'
-
+import { raf } from 'helpers'
+import Meter from '../../component/meter/meter.js'
+import Slider from '../../component/slider/slider.js'
+import Knob from '../../component/knob/knob.js'
 import SoundMeter from '../sound-meter/sound-meter.js'
-
-function raf(cb) {
-  function fn() {
-    cb()
-    window.requestAnimationFrame(fn)
-  }
-  const interval = window.requestAnimationFrame(fn)
-
-  return () => {
-    window.cancelAnimationFrame(interval)
-  }
-}
 
 @observer
 @CSSModules(styles, {
@@ -72,18 +60,6 @@ export default class Channel extends Component {
     } = this.props
 
     return <div styleName='channel'>
-      {/* <div styleName='inserts'> */}
-      {/*   <div styleName='header'> */}
-      {/*     Inserts */}
-      {/*   </div> */}
-      {/*   <div styleName='insert'> */}
-      {/*     hi */}
-      {/*   </div> */}
-      {/*   <div styleName='insert'> */}
-      {/*     hi */}
-      {/*   </div> */}
-      {/* </div> */}
-
       <div styleName='pan'>
         <Knob onSelect={channel.setPan.bind(channel)} />
 
