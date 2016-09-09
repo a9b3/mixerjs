@@ -1,0 +1,24 @@
+@import '~esayemm-styles/shared';
+
+.waveshape {
+  display: flex;
+  flex-direction: column;
+  background: $yellow_1;
+}
+
+.up {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end
+}
+
+.down {
+  display: flex;
+  flex-direction: row;
+}
+
+.bar {
+  flex-grow: 1;
+  background: $yellow_3;
+  margin-left: 1px;
+}

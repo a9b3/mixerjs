@@ -1,0 +1,60 @@
+@import '~esayemm-styles/shared';
+
+@keyframes slideDown {
+  0% {
+    transform: translate(0, 20%);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.action-modals {
+  composes: flex-col;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background: rgba(black, .5);
+  z-index: 100;
+  animation: fadeIn .5s;
+}
+
+.modal {
+  composes: flex-col;
+  background: $dark_5;
+  border-radius: 5px;
+  min-width: 300px;
+  overflow: hidden;
+  animation: fadeIn .5s, slideDown .5s;
+}
+
+.header {
+  composes: flex-row semi-bold;
+  background: $darkalt_2;
+  color: white;
+}
+
+.item {
+  padding: 10px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.content {
+  background: white;
+}

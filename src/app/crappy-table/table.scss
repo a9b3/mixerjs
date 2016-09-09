@@ -1,0 +1,38 @@
+.table {
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.fixed-row {
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  overflow: hidden;
+
+  // for scrollbars
+  // margin-right: 11px;
+}
+
+.fixed-col {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  overflow: hidden;
+
+  // for scrollbars
+  // margin-bottom: 11px;
+}
+
+.columns {
+  display: flex;
+  flex-direction: row;
+}
+
+.grid {
+  overflow: scroll;
+}

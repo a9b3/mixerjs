@@ -1,0 +1,16 @@
+@import '~esayemm-styles/shared';
+
+.form {
+  composes: flex-col;
+}
+
+.input {
+  padding: 10px;
+}
+
+.button {
+  padding: 10px;
+  background: $green_3;
+  color: white;
+  composes: semi-bold;
+}

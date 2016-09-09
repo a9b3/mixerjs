@@ -1,0 +1,35 @@
+@import '~esayemm-styles/shared';
+
+$meter_bg: #342e19;
+$meter_color: #61ff02;
+
+.container {
+  composes: flex-col;
+}
+
+.peak {
+  height: 8px;
+  margin-bottom: 5px;
+  border: .5px solid $dark_3;
+  background: $meter_bg;
+
+  &.active {
+    background: $red_3;
+  }
+}
+
+.meter {
+  flex-grow: 1;
+  border: .5px solid $dark_3;
+  display: flex;
+  flex-direction: flex-column;
+  height: 100%;
+  width: 8px;
+  background: $meter_bg;
+}
+
+.inner {
+  align-self: flex-end;
+  width: 100%;
+  background: $meter_color;
+}

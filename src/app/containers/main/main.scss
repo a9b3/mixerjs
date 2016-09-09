@@ -1,0 +1,23 @@
+@import '~esayemm-styles/shared';
+
+.main {
+  composes: flex-col;
+  height: 100vh;
+  background: $dark_1;
+}
+
+.row {
+  composes: flex-row;
+}
+
+.grow {
+  flex: 1 1 auto;
+  overflow: hidden;
+  height: 0px;
+}
+
+.test {
+  background: black;
+  width: 2000px;
+  height: 2000px;
+}

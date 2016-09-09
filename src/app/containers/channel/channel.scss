@@ -1,0 +1,106 @@
+@import '~esayemm-styles/shared';
+
+$channel_bg: #6b6b6b;
+$meter_color: #61ff02;
+
+.col {
+  composes: flex-col;
+}
+
+.channel {
+  composes: flex-col;
+  background: $channel_bg;
+  width: 80px;
+  margin: 2px;
+}
+
+.inserts {
+  composes: flex-col;
+  background: $dark_2;
+  margin: 2px;
+  border-radius: 4px;
+  overflow: hidden;
+
+  .header {
+    font-weight: 500;
+    text-align: center;
+    background: lighten($dark_2, 10);
+    font-size: 12px;
+    color: white;
+    padding: 2px 0;
+  }
+
+  .insert {
+    padding: 2px 4px;
+    margin: 4px;
+    border-radius: 4px;
+    background: lighten($dark_2, 10);
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+  }
+  .insert + .insert {
+    margin-top: 0;
+  }
+}
+
+.button {
+  composes: semi-bold middle;
+  font-size: 12px;
+  background: $dark_6;
+  margin: 5px;
+  border-radius: 5px;
+  padding: 2px 4px;
+  box-shadow: 0px 2px 2px rgba(black, .15);
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.active {
+    box-shadow: 0px 1px 1px rgba(black, .2);
+    background: $red_1;
+    color: $dark_7;
+  }
+}
+
+.pan {
+  width: 100%;
+  flex-grow: 1;
+  composes: flex-col;
+  align-items: center;
+}
+
+.gain {
+  composes: flex-row;
+  justify-content: center;
+  height: 240px;
+  padding: 5px;
+
+  .slider {
+    margin-left: 10px;
+  }
+}
+
+.reading {
+  width: 100%;
+  composes: semi-bold middle;
+  font-size: 14px;
+  color: $meter_color;
+  background: $dark_2;
+  padding: 2px 4px;
+  font-family: 'Proggy';
+
+  >* {
+    text-align: center;
+    flex: 1;
+  }
+}
+
+.label {
+  composes: middle semi-bold;
+  padding: 5px 10px;
+  min-height: 30px;
+  background: $dark_6;
+  white-space: nowrap;
+}

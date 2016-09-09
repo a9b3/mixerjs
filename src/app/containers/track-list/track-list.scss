@@ -1,0 +1,21 @@
+@import '~esayemm-styles/shared';
+
+.track-list {
+  width: 100%;
+  height: 100%;
+  composes: flex-col;
+}
+
+.spacing {
+  margin-left: 200px;
+}
+
+.cols {
+  composes: flex-col;
+  height: 100%;
+  overflow: auto;
+}
+
+.row {
+  composes: flex-row;
+}

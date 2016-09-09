@@ -1,0 +1,15 @@
+@import '~esayemm-styles/shared';
+
+.mixer {
+  composes: flex-row;
+  background: $dark_2;
+  width: 100%;
+  position: relative;
+  align-items: stretch;
+}
+
+.channels {
+  width: 100%;
+  composes: flex-row;
+  overflow: auto;
+}

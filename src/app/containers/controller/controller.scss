@@ -1,0 +1,63 @@
+@import '~esayemm-styles/shared';
+
+$display_bg: $dark_2;
+$display_color: #61ff02;
+
+.controller {
+  flex-grow: 1;
+  composes: flex-row;
+  align-items: stretch;
+  background: $dark_2;
+}
+
+.section {
+  margin: 0 20px;
+  composes: flex-row;
+  align-items: stretch;
+}
+
+.item {
+  display: inherit;
+}
+
+.display {
+  text-align: right;
+  font-size: 18px;
+  font-family: 'Proggy';
+  color: $display_color;
+
+  .item {
+    background: $display_bg;
+    padding: 10px 10px;
+    margin-right: 5px;
+  }
+}
+
+.controls {
+  .item {
+    display: flex;
+    align-items: center;
+    color: $dark_6;
+    background: $display_bg;
+    padding: 10px 20px;
+    margin-right: 2px;
+    font-weight: 900;
+
+    &:hover {
+      cursor: pointer;
+      opacity: .5;
+    }
+
+    &:active {
+      background: $dark_6;
+      color: $display_bg;
+      opacity: 1;
+    }
+
+    &.active {
+      background: $dark_6;
+      color: $display_bg;
+      opacity: 1;
+    }
+  }
+}

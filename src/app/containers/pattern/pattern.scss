@@ -1,0 +1,43 @@
+@import '~esayemm-styles/shared';
+
+.pattern {
+  height: 100%;
+  flex-grow: 1;
+  composes: flex-row;
+  color: white;
+}
+
+.bar {
+  composes: flex-row;
+  flex-grow: 1;
+  margin: 2px;
+  background: $dark_1;
+}
+
+.beat {
+  composes: flex-row;
+  flex-grow: 1;
+
+  &:nth-child(odd) {
+    background: darken($dark_1, 2);
+  }
+}
+
+.note {
+  margin: 1px;
+  flex-grow: 1;
+  margin-top: 10px;
+  background: $dark_3;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:nth-child(even) {
+    background: darken($dark_3, 1);
+  }
+
+  &.active {
+    background: $misc_peach;
+  }
+}

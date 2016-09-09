@@ -1,0 +1,19 @@
+@import '~esayemm-styles/shared';
+
+.action-bar {
+  flex-grow: 1;
+  composes: flex-col;
+  background: $dark_3;
+}
+
+.item {
+  composes: middle;
+  flex-grow: 1;
+  padding: 5px 10px;
+  color: $dark_6;
+
+  &:hover {
+    background: $dark_7;
+    cursor: pointer;
+  }
+}

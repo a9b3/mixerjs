@@ -1,0 +1,36 @@
+@import '~esayemm-styles/shared';
+
+.track {
+  composes: flex-row;
+  width: 200px;
+  border-bottom: 1px solid darken($dark_6, 60);
+}
+
+.left {
+  flex-grow: 1;
+  composes: flex-row;
+}
+
+.box {
+  flex-grow: 1;
+  composes: flex-col;
+  background: $dark_6;
+}
+
+.meters {
+  padding: 3px;
+  composes: flex-row;
+  height: 100px;
+}
+
+.label {
+  composes: semi-bold;
+  padding: 5px 10px;
+  background: lighten($dark_6, 10);
+  box-shadow: 0 2px 2px rgba(black, .1);
+}
+
+.right {
+  flex: 1;
+  background: darken($dark_6, 50);
+}
