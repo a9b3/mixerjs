@@ -1,4 +1,5 @@
 # mixerjs
+[![Build Status](https://travis-ci.org/esayemm/mixerjs.svg?branch=master)](https://travis-ci.org/esayemm/mixerjs)
 
 Web browser daw. WIP
 
