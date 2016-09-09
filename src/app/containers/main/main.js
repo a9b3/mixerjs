@@ -4,14 +4,13 @@ import CSSModules from 'react-css-modules'
 import { observer } from 'mobx-react'
 import state from 'state'
 
+import Helmet from 'react-helmet'
 import Mixer from '../mixer/mixer.js'
 import ActionModals from '../action-modals/action-modals.js'
 import TrackList from '../track-list/track-list.js'
 import Controller from '../controller/controller.js'
 
-import SoundSource from '../../mixer/SoundSource.js'
-import audioContext from '../../mixer/audioContext.js'
-
+import favicon from 'assets/favicons/favicon.ico'
 import hhmp3 from '../../../assets/drumkit/hh.wav'
 import kickmp3 from '../../../assets/drumkit/kick.wav'
 import snaremp3 from '../../../assets/drumkit/snare.wav'
@@ -91,6 +90,15 @@ export default class Main extends Component {
 
   render() {
     return <div styleName='main'>
+      <Helmet title='Mixerjs - Beat maker'
+        link={[{
+          rel: 'icon',
+          type: 'image/ico',
+          sizes: '16x16',
+          href: favicon,
+        }]}
+      />
+
       <ActionModals actionModals={state.actionModals} />
 
       <div styleName='row'>
