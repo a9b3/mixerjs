@@ -19,6 +19,7 @@ $meter_color: #61ff02;
 }
 
 .meter {
+  position: relative;
   flex-grow: 1;
   border: .5px solid $dark_3;
   display: flex;
@@ -26,10 +27,13 @@ $meter_color: #61ff02;
   height: 100%;
   width: 8px;
   background: $meter_bg;
+  overflow: hidden;
 }
 
 .inner {
+  position: absolute;
   align-self: flex-end;
+  height: 100%;
   width: 100%;
   background: $meter_color;
 }

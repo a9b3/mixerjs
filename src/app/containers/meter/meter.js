@@ -22,13 +22,18 @@ export default class Meter extends Component {
     return true
   }
 
+  valueToTransformTranslate(value) {
+    const percentage = 100 - value
+    return `translateY(${percentage < 0 ? 0 : percentage}%)`
+  }
+
   render() {
     return <div styleName='container'>
       <div styleName={`peak ${this.props.value >= 100 ? 'active' : ''}`}>
       </div>
       <div styleName='meter'>
         <div styleName='inner' style={{
-          height: `${this.props.value > 100 ? 100 : this.props.value}%`,
+          transform: this.valueToTransformTranslate(this.props.value),
         }}/>
       </div>
     </div>

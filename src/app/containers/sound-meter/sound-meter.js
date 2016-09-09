@@ -3,18 +3,7 @@ import React, { Component, PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
 
 import Meter from '../meter/meter.js'
-
-function raf(cb) {
-  function fn() {
-    cb()
-    window.requestAnimationFrame(fn)
-  }
-  const interval = window.requestAnimationFrame(fn)
-
-  return () => {
-    window.cancelAnimationFrame(interval)
-  }
-}
+import raf from 'helpers/raf'
 
 @CSSModules(styles, {
   allowMultiple: true,
@@ -26,7 +15,7 @@ export default class SoundMeter extends Component {
   }
 
   state = {
-    averages: [0, 0],
+    averages: [ 0, 0 ],
   }
 
   componentDidMount() {
