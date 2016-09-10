@@ -8,6 +8,7 @@ import Meter from '../../component/meter/meter.js'
 import Slider from '../../component/slider/slider.js'
 import Knob from '../../component/knob/knob.js'
 import SoundMeter from '../sound-meter/sound-meter.js'
+import EditableText from '../../component/editable-text/editable-text.js'
 
 @observer
 @CSSModules(styles, {
@@ -97,7 +98,12 @@ export default class Channel extends Component {
         </div>
 
         <div styleName='label'>
-          {channel.label}
+          <EditableText
+            text={channel.label}
+            onSubmit={(text) => {
+              channel.setLabel(text)
+            }}
+          />
         </div>
       </div>
     </div>

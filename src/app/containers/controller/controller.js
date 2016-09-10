@@ -1,11 +1,12 @@
 import styles from './controller.scss'
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import CSSModules from 'react-css-modules'
 import { observer } from 'mobx-react'
 
 import state from 'state'
 import moment from 'moment'
-import { raf, padStr }  from 'helpers'
+import { raf, padStr } from 'helpers'
+import EditableText from '../../component/editable-text/editable-text.js'
 
 @observer
 @CSSModules(styles, {
@@ -79,40 +80,63 @@ export default class Controller extends Component {
 
   render() {
     return <div styleName='controller'>
-      <div styleName='display section'>
-        <div styleName='item'>
-          {state.controller.bpm.toFixed(2)} bpm
+      <div styleName='section'>
+        <div styleName='display item'>
+          <EditableText
+            text={state.controller.bpm.toFixed(2)}
+            validate={(text) => {
+              if (!Number(text)) {
+                throw new Error('must be number')
+              }
+            }}
+            onSubmit={(text) => {
+              state.controller.setTempo(Number(text))
+            }}
+          />
         </div>
 
-        <div styleName='item'>
-          bars: {state.controller.bar}
+        <div styleName='display item'>
+          bars:
+          <EditableText
+            text={state.controller.bar}
+            validate={(text) => {
+              if (!Number(text)) {
+                throw new Error('must be number')
+              }
+            }}
+            onSubmit={(text) => {
+              state.controller.setBar(Number(text))
+            }}
+          />
         </div>
 
-        <div styleName='item'>
+        <div styleName='display item'>
           { this.state.isPlaying ? this.getDisplayTime() : '00:00:00' }
         </div>
 
-        <div styleName='item'>
+        <div styleName='display item'>
           <div>
             {padStr(this.state.currentBarsPlayed, 2, '0')}.
             {padStr(this.state.currentBar, 2, '0')}.
             {padStr(this.state.currentBeat, 2, '0')}
           </div>
         </div>
+
+        <div styleName={`control item ${state.controller.isMetronomeActive ? 'active' : ''}`}
+          onClick={state.controller.toggleMetronome.bind(state.controller)}>
+          M
+        </div>
       </div>
 
-      <div styleName='controls section'>
-        <div styleName={`item ${state.controller.isPlaying ? 'active' : ''}`}
+      <div styleName='section'>
+        <div styleName={`control item ${state.controller.isPlaying ? 'active' : ''}`}
           onClick={this.play}>
           <i className='fa fa-play'></i>
         </div>
-        <div styleName='item'
+
+        <div styleName='control item'
           onClick={this.stop}>
           <i className='fa fa-stop'></i>
-        </div>
-        <div styleName={`item ${state.controller.isMetronomeActive ? 'active' : ''}`}
-          onClick={state.controller.toggleMetronome.bind(state.controller)}>
-          M
         </div>
       </div>
     </div>

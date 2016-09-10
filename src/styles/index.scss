@@ -4,3 +4,9 @@
   font-family: 'Proggy';
   src: url(assets/fonts/ProggyClean.ttf);
 }
+
+:global {
+  body {
+    user-select: none;
+  }
+}

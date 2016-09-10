@@ -4,11 +4,14 @@ $meter_bg: #342e19;
 $meter_color: #61ff02;
 
 .container {
+  width: 100%;
+  height: 100%;
   composes: flex-col;
 }
 
 .peak {
   height: 8px;
+  width: 8px;
   margin-bottom: 5px;
   border: .5px solid $dark_3;
   background: $meter_bg;
@@ -36,4 +39,27 @@ $meter_color: #61ff02;
   height: 100%;
   width: 100%;
   background: $meter_color;
+}
+
+.secondary {
+  position: absolute;
+  align-self: flex-end;
+  height: 100%;
+  width: 100%;
+  background: $meter_color;
+  opacity: .4;
+}
+
+.max {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+
+  &:before {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    background: $meter_color;
+  }
 }

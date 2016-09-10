@@ -1,13 +1,18 @@
 @import '~esayemm-styles/shared';
+@import '~styles/variables';
+
+$bg: $primary_bg_color;
 
 $display_bg: $dark_2;
-$display_color: #61ff02;
+$display_bg_active: $dark_6;
+$display_color: $neon_green;
 
 .controller {
   flex-grow: 1;
   composes: flex-row;
-  align-items: stretch;
-  background: $dark_2;
+  align-items: center;
+  background: $bg;
+  box-shadow: 0 2px 5px rba(black, .4);
 }
 
 .section {
@@ -17,31 +22,21 @@ $display_color: #61ff02;
 }
 
 .item {
+  composes: middle;
   display: inherit;
-}
+  height: 30px;
+  background: $display_bg;
+  padding: 0 10px;
 
-.display {
-  text-align: right;
-  font-size: 18px;
-  font-family: 'Proggy';
-  color: $display_color;
-
-  .item {
-    background: $display_bg;
-    padding: 10px 10px;
-    margin-right: 5px;
+  &.display {
+    font-size: 18px;
+    font-family: 'Proggy';
+    color: $display_color;
   }
-}
 
-.controls {
-  .item {
-    display: flex;
-    align-items: center;
-    color: $dark_6;
-    background: $display_bg;
-    padding: 10px 20px;
-    margin-right: 2px;
+  &.control {
     font-weight: 900;
+    color: $display_bg_active;
 
     &:hover {
       cursor: pointer;
@@ -49,13 +44,13 @@ $display_color: #61ff02;
     }
 
     &:active {
-      background: $dark_6;
+      background: $display_bg_active;
       color: $display_bg;
       opacity: 1;
     }
 
     &.active {
-      background: $dark_6;
+      background: $display_bg_active;
       color: $display_bg;
       opacity: 1;
     }
