@@ -24,6 +24,10 @@ export default class Channel extends UnitInterface {
     this.label = label
   }
 
+  setLabel(label) {
+    this.label = label
+  }
+
   /**
    * @param {Number} value - between -1 and 1, 0 is center
    */

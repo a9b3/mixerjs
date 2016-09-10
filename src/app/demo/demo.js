@@ -4,6 +4,7 @@ import CSSModules from 'react-css-modules'
 
 import Meter from '../component/meter/meter.js'
 import EditableText from '../component/editable-text/editable-text.js'
+import Controller from '../containers/controller/controller.js'
 
 @CSSModules(styles, {
   allowMultiple: true,
@@ -24,6 +25,7 @@ export default class Demo extends Component {
 
   render() {
     return <div styleName='demo'>
+      <Controller></Controller>
 
       <EditableText text={this.state.text}
         onSubmit={(text) => {

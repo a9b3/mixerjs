@@ -1,3 +1,10 @@
 .editable-text {
+  &.editing {
+    position: relative;
+  }
+}
 
+.input {
+  position: absolute;
+  width: 80px;
 }

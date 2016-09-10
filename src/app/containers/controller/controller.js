@@ -6,6 +6,7 @@ import { observer } from 'mobx-react'
 import state from 'state'
 import moment from 'moment'
 import { raf, padStr } from 'helpers'
+import EditableText from '../../component/editable-text/editable-text.js'
 
 @observer
 @CSSModules(styles, {
@@ -81,11 +82,32 @@ export default class Controller extends Component {
     return <div styleName='controller'>
       <div styleName='section'>
         <div styleName='display item'>
-          {state.controller.bpm.toFixed(2)}
+          <EditableText
+            text={state.controller.bpm.toFixed(2)}
+            validate={(text) => {
+              if (!Number(text)) {
+                throw new Error('must be number')
+              }
+            }}
+            onSubmit={(text) => {
+              state.controller.setTempo(Number(text))
+            }}
+          />
         </div>
 
         <div styleName='display item'>
-          bars: {state.controller.bar}
+          bars:
+          <EditableText
+            text={state.controller.bar}
+            validate={(text) => {
+              if (!Number(text)) {
+                throw new Error('must be number')
+              }
+            }}
+            onSubmit={(text) => {
+              state.controller.setBar(Number(text))
+            }}
+          />
         </div>
 
         <div styleName='display item'>

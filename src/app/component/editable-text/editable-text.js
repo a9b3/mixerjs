@@ -48,18 +48,21 @@ export default class EditableText extends Component {
   }
 
   render() {
-    if (this.state.isEditing) {
-      return <input type='text'
-        ref={el => this.el = el}
-        defaultValue={this.props.text}
-        onBlur={this.onSubmit}
-        onKeyPress={this.onKeyPress}
-      />
-    }
+    return <span styleName={`editable-text ${this.state.isEditing ? 'editing' : ''}`}>
+      {
+        this.state.isEditing && <input
+          styleName='input'
+          type='text'
+          ref={el => this.el = el}
+          defaultValue={this.props.text}
+          onBlur={this.onSubmit}
+          onKeyPress={this.onKeyPress}
+        />
+      }
 
-    return <span styleName='editable-text'
-      onClick={this.toggleIsEditing}>
-      {this.props.text}
+      <span onDoubleClick={this.toggleIsEditing}>
+        {this.props.text}
+      </span>
     </span>
   }
 }
