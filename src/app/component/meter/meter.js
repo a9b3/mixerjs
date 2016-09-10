@@ -9,10 +9,31 @@ import CSSModules from 'react-css-modules'
 export default class Meter extends Component {
   static propTypes = {
     value: PropTypes.number,
+    secondaryValue: PropTypes.number,
+    maxCounter: PropTypes.number,
   }
 
   static defaultProps = {
     value: 0,
+    secondaryValue: 0,
+    maxCounter: 50,
+  }
+
+  state = {
+    runningMax: 0,
+  }
+
+  counter = 0
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.secondaryValue > this.state.runningMax) {
+      this.setState({ runningMax: nextProps.secondaryValue })
+    }
+
+    if (this.counter === this.props.maxCounter) {
+      this.counter = 0
+      this.setState({ runningMax: nextProps.secondaryValue })
+    }
+    this.counter++
   }
 
   shouldComponentUpdate(nextProps) {
@@ -32,6 +53,18 @@ export default class Meter extends Component {
       <div styleName={`peak ${this.props.value >= 100 ? 'active' : ''}`} />
 
       <div styleName='meter'>
+        <div styleName='max'
+          style={{
+            transform: this.valueToTransformTranslate(this.state.runningMax),
+          }}
+        />
+
+        <div styleName='secondary'
+          style={{
+            transform: this.valueToTransformTranslate(this.props.secondaryValue),
+          }}
+        />
+
         <div styleName='inner'
           style={{
             transform: this.valueToTransformTranslate(this.props.value),

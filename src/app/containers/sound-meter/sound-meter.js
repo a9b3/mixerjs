@@ -15,44 +15,34 @@ export default class SoundMeter extends Component {
   }
 
   state = {
-    averages: [ 0, 0 ],
+    rms: [ 0, 0 ],
+    peak: [ 0, 0 ],
   }
 
   componentDidMount() {
-    this.unsubscribe = raf(this.analyserHandler.bind(this))
+    this.unsubscribe = raf(this._analyserHandler.bind(this))
   }
 
   componentWillUnmount() {
     this.unsubscribe()
   }
 
-  averagesQueue = []
-  analyserHandler = () => {
-    const averages = this.props.analyser.getByteFrequencyData().map(side => {
-      const sum = side.reduce((sum, i) => sum + i, 0)
-      const average = sum / side.length
-      return average
-    })
-
-    if (this.averagesQueue.length < 5) {
-      this.averagesQueue.push(averages)
-    } else {
-      if (this.averagesQueue.every(a => a[0] === averages[0] && a[1] === averages[1])) {
-        this.setState({ averages: [0, 0] })
-        return
-      } else {
-        this.averagesQueue.shift()
-        this.averagesQueue.push(averages)
-      }
-    }
-
-    this.setState({ averages })
+  _analyserHandler = () => {
+    const rms = this.props.analyser.getRms().map(rms => rms * 150)
+    const peak = this.props.analyser.getPeaks().map(peak => peak * 150)
+    this.setState({ rms, peak })
   }
 
   render() {
     return <div styleName='sound-meter'>
-      <Meter value={this.state.averages[0]}/>
-      <Meter value={this.state.averages[1]}/>
+      <Meter
+        value={this.state.rms[0]}
+        secondaryValue={this.state.peak[0]}
+      />
+      <Meter
+        value={this.state.rms[1]}
+        secondaryValue={this.state.peak[1]}
+      />
     </div>
   }
 }
