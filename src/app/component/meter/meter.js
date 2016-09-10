@@ -16,7 +16,7 @@ export default class Meter extends Component {
   static defaultProps = {
     value: 0,
     secondaryValue: 0,
-    maxCounter: 50,
+    maxCounter: 100,
   }
 
   state = {

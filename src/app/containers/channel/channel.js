@@ -21,7 +21,8 @@ export default class Channel extends Component {
   }
 
   state = {
-    averages: [0, 0],
+    rms: [0, 0],
+    peak: [0, 0],
   }
 
   componentDidMount() {
@@ -32,27 +33,10 @@ export default class Channel extends Component {
     this.unsubcribe()
   }
 
-  averagesQueue = []
   analyserHandler = () => {
-    const averages = this.props.channel.analyser.getByteFrequencyData().map(side => {
-      const sum = side.reduce((sum, i) => sum + i, 0)
-      const average = sum / side.length
-      return average
-    })
-
-    if (this.averagesQueue.length < 5) {
-      this.averagesQueue.push(averages)
-    } else {
-      if (this.averagesQueue.every(a => a[0] === averages[0] && a[1] === averages[1])) {
-        this.setState({ averages: [0, 0] })
-        return
-      } else {
-        this.averagesQueue.shift()
-        this.averagesQueue.push(averages)
-      }
-    }
-
-    this.setState({ averages })
+    const rms = this.props.channel.analyser.getRms().map(rms => rms * 100)
+    const peak = this.props.channel.analyser.getPeaks().map(peak => peak * 100)
+    this.setState({ rms, peak })
   }
 
   render() {
@@ -77,7 +61,7 @@ export default class Channel extends Component {
       </div>
 
       <div styleName='gain'>
-        <SoundMeter analyser={channel.analyser} />
+        <SoundMeter rms={this.state.rms} peak={this.state.peak} />
 
         <div styleName='slider'>
           <Slider onSelect={(value) => {
@@ -90,10 +74,10 @@ export default class Channel extends Component {
       <div styleName='end col'>
         <div styleName='reading'>
           <div>
-            {this.state.averages[0].toFixed(1)}
+            {this.state.rms[0].toFixed(1)}
           </div>
           <div>
-            {this.state.averages[1].toFixed(1)}
+            {this.state.rms[1].toFixed(1)}
           </div>
         </div>
 

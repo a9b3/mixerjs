@@ -8,7 +8,7 @@ import CSSModules from 'react-css-modules'
 })
 export default class EditableText extends Component {
   static propTypes = {
-    text: PropTypes.string,
+    text: PropTypes.any,
     validate: PropTypes.func,
     onSubmit: PropTypes.func,
   }
