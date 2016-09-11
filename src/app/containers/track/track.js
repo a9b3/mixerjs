@@ -20,7 +20,7 @@ export default class Track extends Component {
   }
 
   state = {
-    rms: [50, 50],
+    rms: [0, 0],
   }
 
   componentWillMount() {
@@ -85,19 +85,13 @@ export default class Track extends Component {
               }
             </select>
           </div>
-
-          <div styleName='item'>
-            <div styleName='meters'>
-              <SoundMeter rms={this.state.rms} featurePeak={false} featureHorizontal={true}/>
-            </div>
-          </div>
         </div>
 
-        {/* <div styleName='right'> */}
-        {/*   <div styleName='meters'> */}
-        {/*     <SoundMeter rms={this.state.rms} featurePeak={false} /> */}
-        {/*   </div> */}
-        {/* </div> */}
+        <div styleName='right'>
+          <div styleName='meters'>
+            <SoundMeter rms={this.state.rms} featurePeak={false} />
+          </div>
+        </div>
       </div>
     </div>
   }
