@@ -12,22 +12,40 @@ export default class SoundMeter extends Component {
   static propTypes = {
     rms: PropTypes.any,
     peak: PropTypes.any,
+    featureHorizontal: PropTypes.bool,
   }
 
   static defaultProps = {
     rms: [0, 0],
     peak: [0, 0],
+    featureHorizontal: false,
+  }
+
+  getStyle() {
+    const style = {
+      flexDirection: this.props.featureHorizontal ? 'column' : 'row',
+    }
+    return style
   }
 
   render() {
-    return <div styleName='sound-meter'>
+    const {
+      rms,
+      peak,
+      styles, // don't include this in otherProps
+      ...otherProps
+    } = this.props
+
+    return <div styleName='sound-meter' style={this.getStyle()}>
       <Meter
-        value={this.props.rms[0]}
-        secondaryValue={this.props.peak[0]}
+        {...otherProps}
+        value={rms[0]}
+        secondaryValue={peak[0]}
       />
       <Meter
-        value={this.props.rms[1]}
-        secondaryValue={this.props.peak[1]}
+        {...otherProps}
+        value={rms[1]}
+        secondaryValue={peak[1]}
       />
     </div>
   }

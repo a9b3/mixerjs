@@ -20,7 +20,7 @@ export default class Track extends Component {
   }
 
   state = {
-    rms: [0, 0],
+    rms: [50, 50],
   }
 
   componentWillMount() {
@@ -59,7 +59,7 @@ export default class Track extends Component {
     return <div styleName='track'>
       <div styleName='left'>
         <div styleName='box'>
-          <div styleName='label'>
+          <div styleName='label item'>
             <EditableText
               text={this.props.track.label}
               onSubmit={(text) => {
@@ -68,25 +68,36 @@ export default class Track extends Component {
             />
           </div>
 
-          <select styleName='select'
-            value={selected !== undefined ? selected : 'none'}
-            onChange={this.onSelectChange}>
-            <option value={'none'}>None</option>
-            {
-              state.mixer.channels.map((channel, i) => <option
-                key={channel.id}
-                value={i}>
-                Channel {i} ({channel.label})
-              </option>)
-            }
-          </select>
-        </div>
+          <div styleName='item'>
+            <div styleName='label'>
+              Out:
+            </div>
+            <select styleName='select'
+              value={selected !== undefined ? selected : 'none'}
+              onChange={this.onSelectChange}>
+              <option value={'none'}>None</option>
+              {
+                state.mixer.channels.map((channel, i) => <option
+                  key={channel.id}
+                  value={i}>
+                  {i}: ({channel.label})
+                </option>)
+              }
+            </select>
+          </div>
 
-        <div styleName='box'>
-          <div styleName='meters'>
-            <SoundMeter rms={this.state.rms} />
+          <div styleName='item'>
+            <div styleName='meters'>
+              <SoundMeter rms={this.state.rms} featurePeak={false} featureHorizontal={true}/>
+            </div>
           </div>
         </div>
+
+        {/* <div styleName='right'> */}
+        {/*   <div styleName='meters'> */}
+        {/*     <SoundMeter rms={this.state.rms} featurePeak={false} /> */}
+        {/*   </div> */}
+        {/* </div> */}
       </div>
     </div>
   }
