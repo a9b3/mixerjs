@@ -15,11 +15,13 @@ export default class Analyser extends UnitInterface {
   rms = new RMS()
 
   constructor() {
-    // this.inputNode is set to a channelSplitter, stereo
+    super(audioContext.createGain(), null)
+
     // ex.
-    // this.inputNode.connect(fooNode, 0, 0) <-- left signal
-    // this.inputNode.connect(fooNode, 1, 0) <-- right signal
-    super(audioContext.createChannelSplitter(), null)
+    // this.splitter.connect(fooNode, 0, 0) <-- left signal
+    // this.splitter.connect(fooNode, 1, 0) <-- right signal
+    this.splitter = audioContext.createChannelSplitter()
+    this.inputNode.connect(this.splitter)
 
     this._analysers.forEach((analyser, i) => {
       // https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/smoothingTimeConstant
@@ -29,7 +31,7 @@ export default class Analyser extends UnitInterface {
       analyser.fftSize = 1024
 
       // connect stereo signals to individual analysers
-      this.inputNode.connect(analyser, i, 0)
+      this.splitter.connect(analyser, i, 0)
     })
 
     this.inputNode.connect(this.rms.input)
