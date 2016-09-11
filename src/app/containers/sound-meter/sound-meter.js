@@ -3,7 +3,6 @@ import React, { Component, PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
 
 import Meter from '../../component/meter/meter.js'
-import raf from 'helpers/raf'
 
 @CSSModules(styles, {
   allowMultiple: true,
@@ -11,37 +10,42 @@ import raf from 'helpers/raf'
 })
 export default class SoundMeter extends Component {
   static propTypes = {
-    analyser: PropTypes.object,
+    rms: PropTypes.any,
+    peak: PropTypes.any,
+    featureHorizontal: PropTypes.bool,
   }
 
-  state = {
-    rms: [ 0, 0 ],
-    peak: [ 0, 0 ],
+  static defaultProps = {
+    rms: [0, 0],
+    peak: [0, 0],
+    featureHorizontal: false,
   }
 
-  componentDidMount() {
-    this.unsubscribe = raf(this._analyserHandler.bind(this))
-  }
-
-  componentWillUnmount() {
-    this.unsubscribe()
-  }
-
-  _analyserHandler = () => {
-    const rms = this.props.analyser.getRms().map(rms => rms * 150)
-    const peak = this.props.analyser.getPeaks().map(peak => peak * 150)
-    this.setState({ rms, peak })
+  getStyle() {
+    const style = {
+      flexDirection: this.props.featureHorizontal ? 'column' : 'row',
+    }
+    return style
   }
 
   render() {
-    return <div styleName='sound-meter'>
+    const {
+      rms,
+      peak,
+      styles, // don't include this in otherProps
+      ...otherProps
+    } = this.props
+
+    return <div styleName='sound-meter' style={this.getStyle()}>
       <Meter
-        value={this.state.rms[0]}
-        secondaryValue={this.state.peak[0]}
+        {...otherProps}
+        value={rms[0]}
+        secondaryValue={peak[0]}
       />
       <Meter
-        value={this.state.rms[1]}
-        secondaryValue={this.state.peak[1]}
+        {...otherProps}
+        value={rms[1]}
+        secondaryValue={peak[1]}
       />
     </div>
   }

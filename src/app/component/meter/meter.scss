@@ -10,9 +10,10 @@ $meter_color: #61ff02;
 }
 
 .peak {
-  height: 8px;
-  width: 8px;
+  height: 100%;
+  width: 100%;
   margin-bottom: 5px;
+  margin-right: 5px;
   border: .5px solid $dark_3;
   background: $meter_bg;
 
@@ -26,9 +27,6 @@ $meter_color: #61ff02;
   flex-grow: 1;
   border: .5px solid $dark_3;
   display: flex;
-  flex-direction: flex-column;
-  height: 100%;
-  width: 8px;
   background: $meter_bg;
   overflow: hidden;
 }

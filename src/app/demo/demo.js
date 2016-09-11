@@ -5,6 +5,11 @@ import CSSModules from 'react-css-modules'
 import Meter from '../component/meter/meter.js'
 import EditableText from '../component/editable-text/editable-text.js'
 import Controller from '../containers/controller/controller.js'
+import TrackComponent from '../containers/track/track.js'
+import Track from '../mixer/Track.js'
+import SoundMeter from '../containers/sound-meter/sound-meter.js'
+
+const track = new Track({ label: 'yo' })
 
 @CSSModules(styles, {
   allowMultiple: true,
@@ -21,24 +26,26 @@ export default class Demo extends Component {
 
   state = {
     text: 'hello world',
+    value: 0,
+  }
+
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({
+        value: Math.random() * 100,
+      })
+    }, 100)
   }
 
   render() {
     return <div styleName='demo'>
-      <Controller></Controller>
-
-      <EditableText text={this.state.text}
-        onSubmit={(text) => {
-          console.log(`here`)
-          this.setState({ text })
-        }}
-        validate={(text) => {
-          if (text !== 'yo') {
-            throw new Error('must be yo')
-          }
-        }}
-      />
-
+      <div style={{
+        width: '100px',
+        height: '100px',
+      }}>
+        <SoundMeter rms={[this.state.value, this.state.value]} featurePeak={false}></SoundMeter>
+      </div>
+      <TrackComponent track={track}></TrackComponent>
     </div>
   }
 }

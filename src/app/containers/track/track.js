@@ -4,8 +4,10 @@ import CSSModules from 'react-css-modules'
 import { observer } from 'mobx-react'
 
 import state from 'state'
+import { raf } from 'helpers'
 import SoundMeter from '../sound-meter/sound-meter.js'
 import Pattern from '../pattern/pattern.js'
+import EditableText from '../../component/editable-text/editable-text.js'
 
 @observer
 @CSSModules(styles, {
@@ -15,6 +17,25 @@ import Pattern from '../pattern/pattern.js'
 export default class Track extends Component {
   static propTypes = {
     track: PropTypes.object,
+  }
+
+  state = {
+    rms: [0, 0],
+  }
+
+  componentWillMount() {
+    this.unsubscribe = raf(this.analyserHandler.bind(this))
+  }
+
+  componentWillUnmount() {
+    if (this.unsubscribe) {
+      this.unsubscribe()
+    }
+  }
+
+  analyserHandler = () => {
+    const rms = this.props.track.analyser.getRms().map(rms => rms * 100)
+    this.setState({ rms })
   }
 
   onSelectChange = (evt) => {
@@ -38,27 +59,37 @@ export default class Track extends Component {
     return <div styleName='track'>
       <div styleName='left'>
         <div styleName='box'>
-          <div styleName='label'>
-            {this.props.track.label}
+          <div styleName='label item'>
+            <EditableText
+              text={this.props.track.label}
+              onSubmit={(text) => {
+                this.props.track.setLabel(text)
+              }}
+            />
           </div>
 
-          <select styleName='select'
-            value={selected !== undefined ? selected : 'none'}
-            onChange={this.onSelectChange}>
-            <option value={'none'}>None</option>
-            {
-              state.mixer.channels.map((channel, i) => <option
-                key={channel.id}
-                value={i}>
-                Channel {i} ({channel.label})
-              </option>)
-            }
-          </select>
+          <div styleName='item'>
+            <div styleName='label'>
+              Out:
+            </div>
+            <select styleName='select'
+              value={selected !== undefined ? selected : 'none'}
+              onChange={this.onSelectChange}>
+              <option value={'none'}>None</option>
+              {
+                state.mixer.channels.map((channel, i) => <option
+                  key={channel.id}
+                  value={i}>
+                  {i}: ({channel.label})
+                </option>)
+              }
+            </select>
+          </div>
         </div>
 
-        <div styleName='box'>
+        <div styleName='right'>
           <div styleName='meters'>
-            <SoundMeter analyser={this.props.track.analyser} />
+            <SoundMeter rms={this.state.rms} featurePeak={false} />
           </div>
         </div>
       </div>

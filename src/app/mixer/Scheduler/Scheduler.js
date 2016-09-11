@@ -2,12 +2,13 @@ import audioContext from '../audioContext.js'
 import IntervalWorker from 'worker!./interval-worker.js'
 
 export default class Scheduler {
-  tempo = 120
-  nextNoteTime = 0  // kept by schedule
+  worker = null
   lookAhead = 25 // ms
   scheduleAheadTime = .1  // in seconds
+
+  tempo = 120
+  nextNoteTime = 0  // kept by schedule
   current32ndNote = 0  // loop
-  worker = null
   loopLength = 16
   handlers = []
 

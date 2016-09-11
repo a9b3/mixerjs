@@ -11,12 +11,16 @@ export default class Meter extends Component {
     value: PropTypes.number,
     secondaryValue: PropTypes.number,
     maxCounter: PropTypes.number,
+    featurePeak: PropTypes.bool,
+    featureHorizontal: PropTypes.bool,
   }
 
   static defaultProps = {
     value: 0,
     secondaryValue: 0,
-    maxCounter: 50,
+    maxCounter: 100,
+    featurePeak: true,
+    featureHorizontal: false,
   }
 
   state = {
@@ -45,14 +49,40 @@ export default class Meter extends Component {
 
   valueToTransformTranslate(value) {
     const percentage = 100 - value
-    return `translateY(${percentage < 0 ? 0 : percentage}%)`
+    const str = `${percentage < 0 ? 0 : percentage}%`
+    return this.props.featureHorizontal ? `translateX(${str})` : `translateY(${str})`
+  }
+
+  getStyle() {
+    return {
+      container: {
+        flexDirection: this.props.featureHorizontal ? 'row' : 'column',
+      },
+      meter: {
+        width: this.props.featureHorizontal ? '100%' : '100%',
+        minWidth: '5px',
+        height: this.props.featureHorizontal ? '100%' : '100%',
+        minHeight: '5px',
+        flexDirection: this.props.featureHorizontal ? 'row' : 'column',
+
+      },
+      peak: {
+        width: this.props.featureHorizontal ? '8px' : '100%',
+        height: this.props.featureHorizontal ? '100%' : '8px',
+      }
+    }
   }
 
   render() {
-    return <div styleName='container'>
-      <div styleName={`peak ${this.props.value >= 100 ? 'active' : ''}`} />
+    return <div styleName='container' style={this.getStyle().container}>
+      {
+        this.props.featurePeak && <div
+          styleName={`peak ${this.props.value >= 100 ? 'active' : ''}`}
+          style={this.getStyle().peak}
+        />
+      }
 
-      <div styleName='meter'>
+      <div styleName='meter' style={this.getStyle().meter}>
         <div styleName='max'
           style={{
             transform: this.valueToTransformTranslate(this.state.runningMax),

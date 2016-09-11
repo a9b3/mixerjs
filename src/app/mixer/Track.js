@@ -7,17 +7,21 @@ import SoundSource from './SoundSource.js'
 import Analyser from './Analyser.js'
 
 export default class Track extends UnitInterface {
-  label = undefined
+  @observable notes = {}
+  @observable label = undefined
   analyser = new Analyser()
   soundSource = new SoundSource()
   id = uuid.v4()
-  @observable notes = {}
 
   constructor({ label } = {}) {
     super(null, audioContext.createGain())
     this.outputNode.connect(this.analyser.inputNode)
     this.soundSource.outputNode.connect(this.outputNode)
 
+    this.label = label
+  }
+
+  setLabel(label) {
     this.label = label
   }
 
