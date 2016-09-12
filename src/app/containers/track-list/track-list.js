@@ -3,7 +3,6 @@ import React, { Component, PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
 import { observer } from 'mobx-react'
 
-import Timer from '../timer/timer.js'
 import Track from '../track/track.js'
 import Pattern from '../pattern/pattern.js'
 import state from 'state'
@@ -20,10 +19,6 @@ export default class TrackList extends Component {
 
   render() {
     return <div styleName='track-list'>
-      <div styleName='spacing'>
-        <Timer />
-      </div>
-
       <div styleName='cols'>
         {this.props.trackList.tracks.map((track, i) => {
           return <div styleName='row' key={i}>
@@ -32,7 +27,7 @@ export default class TrackList extends Component {
             </div>
 
             <div styleName='item' style={{ flexGrow: '1' }}>
-              <Pattern bar={state.controller.bar} beat={state.controller.beat} track={track}></Pattern>
+              <Pattern bar={track.bar} beat={track.beat} track={track}></Pattern>
             </div>
           </div>
         })}
