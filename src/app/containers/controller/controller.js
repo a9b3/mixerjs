@@ -5,7 +5,7 @@ import { observer } from 'mobx-react'
 
 import state from 'state'
 import moment from 'moment'
-import { raf, padStr } from 'helpers'
+import { raf } from 'helpers'
 import EditableText from '../../component/editable-text/editable-text.js'
 
 @observer
@@ -15,20 +15,8 @@ import EditableText from '../../component/editable-text/editable-text.js'
 })
 export default class Controller extends Component {
   state = {
-    currentBeat: 0,
-    currentBar: 0,
-    currentBarsPlayed: 0,
-
     startTime: Date.now(),
     isPlaying: false,
-  }
-
-  componentDidMount() {
-    state.controller.addHandler(this.setBeatDisplay)
-  }
-
-  componentWillUnmount() {
-    state.controller.removeHandler(this.setBeatDisplay)
   }
 
   play = () => {
@@ -49,9 +37,6 @@ export default class Controller extends Component {
     this.unsubscribe()
     this.setState({
       isPlaying: false,
-      currentBeat: 0,
-      currentBar: 0,
-      currentBarsPlayed: 0,
     })
   }
 
@@ -61,21 +46,6 @@ export default class Controller extends Component {
 
     const str = moment.utc(now.diff(then)).format('mm:ss:SS')
     return str
-  }
-
-  setBeatDisplay = (current32ndNote) => {
-    const beat = Math.floor(((current32ndNote / 32) * state.controller.beat)) + 1
-    if (beat !== this.state.currentBeat) {
-      const currentBeat = Math.floor((((current32ndNote % 32) / 32) * state.controller.beat)) + 1
-      const currentBar = Math.ceil(beat/state.controller.beat)
-      const currentBarsPlayed = current32ndNote === 0 ? this.state.currentBarsPlayed + 1 : this.state.currentBarsPlayed
-
-      this.setState({
-        currentBeat,
-        currentBar,
-        currentBarsPlayed,
-      })
-    }
   }
 
   render() {
@@ -96,30 +66,7 @@ export default class Controller extends Component {
         </div>
 
         <div styleName='display item'>
-          bars:
-          <EditableText
-            text={state.controller.bar}
-            validate={(text) => {
-              if (!Number(text)) {
-                throw new Error('must be number')
-              }
-            }}
-            onSubmit={(text) => {
-              state.controller.setBar(Number(text))
-            }}
-          />
-        </div>
-
-        <div styleName='display item'>
           { this.state.isPlaying ? this.getDisplayTime() : '00:00:00' }
-        </div>
-
-        <div styleName='display item'>
-          <div>
-            {padStr(this.state.currentBarsPlayed, 2, '0')}.
-            {padStr(this.state.currentBar, 2, '0')}.
-            {padStr(this.state.currentBeat, 2, '0')}
-          </div>
         </div>
 
         <div styleName={`control item ${state.controller.isMetronomeActive ? 'active' : ''}`}

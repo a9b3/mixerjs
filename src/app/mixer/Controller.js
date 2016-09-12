@@ -6,30 +6,17 @@ export default class Controller {
   handlers = []
   scheduler = new Scheduler()
   metronome = new Metronome()
-  @observable beat = 4
-  @observable bar = 2
   @observable bpm = 0
   @observable isMetronomeActive = false
   @observable isPlaying = false
 
   constructor({ bpm = 120 } = {}) {
     this.setTempo(bpm)
-    this.scheduler.setLoopLength((this.beat * 8) * this.bar)
   }
 
   setTempo(bpm) {
     this.bpm = bpm
     this.scheduler.setTempo(bpm)
-  }
-
-  setBeat(beat) {
-    this.beat = beat
-    this.scheduler.setLoopLength((this.beat * 8) * this.bar)
-  }
-
-  setBar(bar) {
-    this.bar = bar
-    this.scheduler.setLoopLength((this.beat * 8) * this.bar)
   }
 
   runHandlers = (...args) => {

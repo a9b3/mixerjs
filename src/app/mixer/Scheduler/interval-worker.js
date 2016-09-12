@@ -7,14 +7,12 @@ function intervalFn() {
 
 const handlers = {
   start(args) {
-    setInterval(intervalFn, interval)
+    if (!timerId) {
+      timerId = setInterval(intervalFn, interval)
+    }
   },
   setInterval(args) {
     interval = args
-    if (timerId) {
-      clearInterval(timerId)
-      timerId = setInterval(intervalFn, interval)
-    }
   },
   stop() {
     clearInterval(timerId)

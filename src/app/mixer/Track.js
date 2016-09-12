@@ -9,6 +9,10 @@ import Analyser from './Analyser.js'
 export default class Track extends UnitInterface {
   @observable notes = {}
   @observable label = undefined
+
+  @observable bar = 2
+  @observable beat = 4
+
   analyser = new Analyser()
   soundSource = new SoundSource()
   id = uuid.v4()
@@ -19,6 +23,14 @@ export default class Track extends UnitInterface {
     this.soundSource.outputNode.connect(this.outputNode)
 
     this.label = label
+  }
+
+  setBar(bar) {
+    this.bar = bar
+  }
+
+  setBeat(beat) {
+    this.beat = beat
   }
 
   setLabel(label) {
@@ -37,13 +49,16 @@ export default class Track extends UnitInterface {
     delete this.notes[note]
   }
 
-  handler = (current32ndNote, nextNoteTime) => {
+  handler = (currentTick, nextTickTime, { ticksPerBeat }) => {
     if (!this.soundSource.ready) {
       return
     }
 
-    if (this.notes[current32ndNote]) {
-      this.soundSource.play({ startTime: nextNoteTime })
+    const loopLength = this.bar * 4 * ticksPerBeat
+    const offsetTick = currentTick % loopLength
+
+    if (this.notes[offsetTick]) {
+      this.soundSource.play({ startTime: nextTickTime })
     }
   }
 }
