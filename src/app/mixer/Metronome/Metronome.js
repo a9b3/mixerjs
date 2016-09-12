@@ -7,19 +7,20 @@ export default class Metronome {
     this.gain.connect(audioContext.destination)
   }
 
-  handler = (current32ndNote, nextNoteTime) => {
-    const osc = audioContext.createOscillator()
-    osc.connect(this.gain)
-
-    if (current32ndNote % 32 === 0) {
+  handler = (currentTick, nextTickTime, { ticksPerBeat }) => {
+    if (currentTick % (ticksPerBeat * 4) === 0) {
+      const osc = audioContext.createOscillator()
+      osc.connect(this.gain)
       osc.frequency.value = 220
-      osc.start(nextNoteTime)
-      osc.stop(nextNoteTime + 0.05)
+      osc.start(nextTickTime)
+      osc.stop(nextTickTime + 0.05)
       this.gain.setGain(.6)
-    } else if (current32ndNote % 8 === 0) {
+    } else if (currentTick % ticksPerBeat === 0) {
+      const osc = audioContext.createOscillator()
+      osc.connect(this.gain)
       osc.frequency.value = 220
-      osc.start(nextNoteTime)
-      osc.stop(nextNoteTime + 0.05)
+      osc.start(nextTickTime)
+      osc.stop(nextTickTime + 0.05)
       this.gain.setGain(.3)
     }
   }
