@@ -85,6 +85,26 @@ export default class Track extends Component {
               }
             </select>
           </div>
+
+          <div styleName='item'>
+            <div styleName='label'>
+              Bar
+            </div>
+            <select styleName='select'
+              value={this.props.track.bar}
+              onChange={(evt) => {
+                this.props.track.setBar(evt.target.value)
+              }}>
+              {
+                [1,2,3,4,5,6,7,8].map((value, i) => <option
+                  key={i}
+                  value={value}
+                >
+                  {value} bars
+                </option>)
+              }
+            </select>
+          </div>
         </div>
 
         <div styleName='right'>
