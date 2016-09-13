@@ -8,6 +8,8 @@ import Controller from '../containers/controller/controller.js'
 import TrackComponent from '../containers/track/track.js'
 import Track from '../mixer/Track.js'
 import SoundMeter from '../containers/sound-meter/sound-meter.js'
+import Slider from '../component/slider/slider.js'
+import Knob from '../component/knob/knob.js'
 
 const track = new Track({ label: 'yo' })
 
@@ -39,11 +41,12 @@ export default class Demo extends Component {
 
   render() {
     return <div styleName='demo'>
+
       <div style={{
         width: '100px',
         height: '100px',
       }}>
-        <SoundMeter rms={[this.state.value, this.state.value]} featurePeak={false}></SoundMeter>
+        <Knob value={-1}></Knob>
       </div>
       <TrackComponent track={track}></TrackComponent>
     </div>
