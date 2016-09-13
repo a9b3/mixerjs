@@ -1,17 +1,21 @@
 import styles from './slider.scss'
 import React, { Component, PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
+import pureRender from 'helpers/pure-render'
 
+@pureRender
 @CSSModules(styles, {
   allowMultiple: true,
   errorWhenNotFound: false,
 })
 export default class Slider extends Component {
   static propTypes = {
+    value: PropTypes.number,
     onSelect: PropTypes.func,
   }
 
   static defaultProps = {
+    value: 0,
     onSelect: () => {},
   }
 
@@ -70,16 +74,25 @@ export default class Slider extends Component {
     })
   }
 
+  getStyle = () => {
+    if (!this.buttonEl) {
+      return {}
+    }
+    const height = this.buttonEl.parentNode.offsetHeight - this.buttonEl.offsetHeight
+    const top = height - (this.props.value * height)
+
+    return {
+      top: `${top}px`,
+    }
+  }
+
   render() {
     return <div styleName='slider'>
-      <div styleName='bg'>
-      </div>
+      <div styleName='bg' />
 
       <div styleName='button'
-        style={{
-          top: `${this.state.position.y}px`,
-        }}
         ref={el => this.buttonEl = el}
+        style={this.getStyle()}
         onMouseDown={this.onMouseDown}
         onDoubleClick={this.onDoubleClick}
       />
