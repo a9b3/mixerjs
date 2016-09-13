@@ -11,6 +11,7 @@ export default class Channel extends UnitInterface {
   @observable panPosition = 0
   @observable isMute = false // set by this.toggleMute()
   @observable label = undefined
+  @observable gain = 1
 
   constructor({ label } = {}) {
     // set inputNode, outputNode
@@ -18,10 +19,11 @@ export default class Channel extends UnitInterface {
 
     this.inputNode.connect(this.panner)
     this.panner.connect(this.outputNode)
-    this.setPan(0)
     this.outputNode.connect(this.analyser.inputNode)
 
     this.label = label
+    this.setPan(this.panPosition)
+    this.setGain(this.gain)
   }
 
   setLabel(label) {
@@ -43,6 +45,7 @@ export default class Channel extends UnitInterface {
    * @param {Number} value - between 0 - 1
    */
   setGain(value) {
+    this.gain = value
     return this.outputNode.setGain(value)
   }
 
