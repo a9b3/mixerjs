@@ -1,7 +1,9 @@
 import styles from './editable-text.scss'
 import React, { Component, PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
+import pureRender from 'helpers/pure-render'
 
+@pureRender
 @CSSModules(styles, {
   allowMultiple: true,
   errorWhenNotFound: false,

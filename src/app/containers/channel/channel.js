@@ -3,12 +3,12 @@ import React, { Component, PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
 import { observer } from 'mobx-react'
 
-import { raf } from 'helpers'
 import Meter from '../../component/meter/meter.js'
 import Slider from '../../component/slider/slider.js'
 import Knob from '../../component/knob/knob.js'
-import SoundMeter from '../sound-meter/sound-meter.js'
+import SoundMeter from '../sound-meter/sound-meter-auto.js'
 import EditableText from '../../component/editable-text/editable-text.js'
+import RmsReading from '../rms-reading/rms-reading.js'
 
 @observer
 @CSSModules(styles, {
@@ -20,23 +20,21 @@ export default class Channel extends Component {
     channel: PropTypes.object,
   }
 
-  state = {
-    rms: [0, 0],
-    peak: [0, 0],
+  setGain = (value) => {
+    const diff = 1 - value
+    this.props.channel.setGain(diff)
   }
 
-  componentDidMount() {
-    this.unsubcribe = raf(this.analyserHandler.bind(this))
+  toggleMute = () => {
+    this.props.channel.toggleMute()
   }
 
-  componentWillUnmount() {
-    this.unsubcribe()
+  setPan = (value) => {
+    this.props.channel.setPan(value)
   }
 
-  analyserHandler = () => {
-    const rms = this.props.channel.analyser.getRms().map(rms => rms * 100)
-    const peak = this.props.channel.analyser.getPeaks().map(peak => peak * 100)
-    this.setState({ rms, peak })
+  setLabel = (text) => {
+    this.props.channel.setLabel(text)
   }
 
   render() {
@@ -46,7 +44,7 @@ export default class Channel extends Component {
 
     return <div styleName='channel'>
       <div styleName='pan'>
-        <Knob onSelect={channel.setPan.bind(channel)} />
+        <Knob onSelect={this.setPan} value={channel.panPosition} />
 
         <div styleName='reading'>
           Pan {channel.panPosition.toFixed(2)}
@@ -55,38 +53,26 @@ export default class Channel extends Component {
 
       <div styleName='header'>
         <div styleName={`button ${channel.isMute ? 'active' : ''}`}
-          onClick={channel.toggleMute.bind(channel)}>
+          onClick={this.toggleMute}>
           Mute
         </div>
       </div>
 
       <div styleName='gain'>
-        <SoundMeter rms={this.state.rms} peak={this.state.peak} />
+        <SoundMeter analyser={this.props.channel.analyser} featurePeak={true} />
 
         <div styleName='slider'>
-          <Slider onSelect={(value) => {
-            const diff = 1 - value
-            channel.setGain(diff)
-          }} />
+          <Slider onSelect={this.setGain} value={channel.gain} />
         </div>
       </div>
 
       <div styleName='end col'>
-        <div styleName='reading'>
-          <div>
-            {this.state.rms[0].toFixed(1)}
-          </div>
-          <div>
-            {this.state.rms[1].toFixed(1)}
-          </div>
-        </div>
+        <RmsReading analyser={this.props.channel.analyser} className={styles.reading}/>
 
         <div styleName='label'>
           <EditableText
             text={channel.label}
-            onSubmit={(text) => {
-              channel.setLabel(text)
-            }}
+            onSubmit={this.setLabel}
           />
         </div>
       </div>
