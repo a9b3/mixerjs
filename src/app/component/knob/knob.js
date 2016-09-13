@@ -1,7 +1,9 @@
 import styles from './knob.scss'
 import React, { Component, PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
+import pureRender from 'helpers/pure-render'
 
+@pureRender
 @CSSModules(styles, {
   allowMultiple: true,
   errorWhenNotFound: false,
@@ -9,29 +11,18 @@ import CSSModules from 'react-css-modules'
 export default class Knob extends Component {
   static propTypes = {
     onSelect: PropTypes.func,
-    ticks: PropTypes.number,
     pxRange: PropTypes.number,
+    value: PropTypes.number,
   }
 
   static defaultProps = {
     onSelect: () => {},
-    ticks: 10,
     pxRange: 120,
+    value: 0,
   }
 
   state = {
     position: 0,
-  }
-
-  renderTicks = () => {
-    const ticks = []
-    for (let i = 0; i < this.props.ticks; i++) {
-      ticks.push(<div styleName='tick' style={{
-        transform: `rotate(${(i+1) * (180/this.props.ticks)}deg)`
-      }}>
-      </div>)
-    }
-    return ticks
   }
 
   onMouseDown = (evt) => {
@@ -77,19 +68,20 @@ export default class Knob extends Component {
     })
   }
 
+  getStyles = () => {
+    const pos = this.props.value * this.props.pxRange
+
+    return {
+      transform: `rotate(${pos}deg)`,
+    }
+  }
+
   render() {
     return <div styleName='knob'>
-      {/* <div styleName='click-guide'> */}
-      {/* </div> */}
-
       <div styleName='knob-inner' onMouseDown={this.onMouseDown} onDoubleClick={this.onDoubleClick}>
-        <div styleName='knob-indicator' style={{
-          transform: `rotate(${this.state.position}deg)`
-        }}>
+        <div styleName='knob-indicator' style={this.getStyles()}>
         </div>
       </div>
-
-      {/* {this.renderTicks()} */}
     </div>
   }
 }
