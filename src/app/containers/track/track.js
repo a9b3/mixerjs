@@ -4,7 +4,7 @@ import CSSModules from 'react-css-modules'
 import { observer } from 'mobx-react'
 
 import state from 'state'
-import SoundMeter from '../sound-meter-auto/sound-meter-auto.js'
+import SoundMeter from '../sound-meter/sound-meter-auto.js'
 import Pattern from '../pattern/pattern.js'
 import EditableText from '../../component/editable-text/editable-text.js'
 

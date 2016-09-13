@@ -6,7 +6,7 @@ import { observer } from 'mobx-react'
 import Meter from '../../component/meter/meter.js'
 import Slider from '../../component/slider/slider.js'
 import Knob from '../../component/knob/knob.js'
-import SoundMeter from '../sound-meter-auto/sound-meter-auto.js'
+import SoundMeter from '../sound-meter/sound-meter-auto.js'
 import EditableText from '../../component/editable-text/editable-text.js'
 import RmsReading from '../rms-reading/rms-reading.js'
 

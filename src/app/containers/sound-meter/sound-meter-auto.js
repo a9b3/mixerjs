@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 
-import SoundMeter from '../sound-meter/sound-meter.js'
+import SoundMeter from './sound-meter.js'
 import { raf } from 'helpers'
 
 export default class SoundMeterAuto extends Component {
@@ -28,6 +28,13 @@ export default class SoundMeterAuto extends Component {
     if (this.unsubscribe) {
       this.unsubscribe()
     }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.rms.every((el, i) => nextState.rms[i] === el) && this.state.peak.every((el, i) => nextState.peak[i] === el)) {
+      return false
+    }
+    return true
   }
 
   _analyserHandler = () => {

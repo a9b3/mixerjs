@@ -18,6 +18,13 @@ export default class RmsReading extends Component {
     this.unsubscribe()
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.rms.every((el, i) => nextState.rms[i] === el)) {
+      return false
+    }
+    return true
+  }
+
   _analyserHandler = () => {
     const rms = this.props.analyser.getRms().map(rms => rms * 100)
     this.setState({ rms })
