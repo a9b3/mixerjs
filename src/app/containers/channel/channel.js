@@ -39,6 +39,23 @@ export default class Channel extends Component {
     this.setState({ rms, peak })
   }
 
+  setGain = (value) => {
+    const diff = 1 - value
+    this.props.channel.setGain(diff)
+  }
+
+  toggleMute = () => {
+    this.props.channel.toggleMute()
+  }
+
+  setPan = (value) => {
+    this.props.channel.setPan(value)
+  }
+
+  setLabel = (text) => {
+    this.props.channel.setLabel(text)
+  }
+
   render() {
     const {
       channel,
@@ -46,7 +63,7 @@ export default class Channel extends Component {
 
     return <div styleName='channel'>
       <div styleName='pan'>
-        <Knob onSelect={channel.setPan.bind(channel)} />
+        <Knob onSelect={this.setPan} value={channel.panPosition} />
 
         <div styleName='reading'>
           Pan {channel.panPosition.toFixed(2)}
@@ -55,7 +72,7 @@ export default class Channel extends Component {
 
       <div styleName='header'>
         <div styleName={`button ${channel.isMute ? 'active' : ''}`}
-          onClick={channel.toggleMute.bind(channel)}>
+          onClick={this.toggleMute}>
           Mute
         </div>
       </div>
@@ -64,10 +81,7 @@ export default class Channel extends Component {
         <SoundMeter rms={this.state.rms} peak={this.state.peak} />
 
         <div styleName='slider'>
-          <Slider onSelect={(value) => {
-            const diff = 1 - value
-            channel.setGain(diff)
-          }} />
+          <Slider onSelect={this.setGain} value={channel.gain} />
         </div>
       </div>
 
@@ -84,9 +98,7 @@ export default class Channel extends Component {
         <div styleName='label'>
           <EditableText
             text={channel.label}
-            onSubmit={(text) => {
-              channel.setLabel(text)
-            }}
+            onSubmit={this.setLabel}
           />
         </div>
       </div>
