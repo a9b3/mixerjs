@@ -1,0 +1,8 @@
+@import '~esayemm-styles/shared';
+
+.compat-check {
+  height: 100%;
+  composes: middle;
+  background: $darkalt_2;
+  color: $dark_7;
+}
