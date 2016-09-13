@@ -3,7 +3,9 @@ import React, { Component, PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
 
 import Meter from '../../component/meter/meter.js'
+import pureRender from 'helpers/pure-render'
 
+@pureRender
 @CSSModules(styles, {
   allowMultiple: true,
   errorWhenNotFound: false,

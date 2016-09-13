@@ -4,8 +4,7 @@ import CSSModules from 'react-css-modules'
 import { observer } from 'mobx-react'
 
 import state from 'state'
-import { raf } from 'helpers'
-import SoundMeter from '../sound-meter/sound-meter.js'
+import SoundMeter from '../sound-meter-auto/sound-meter-auto.js'
 import Pattern from '../pattern/pattern.js'
 import EditableText from '../../component/editable-text/editable-text.js'
 
@@ -19,31 +18,20 @@ export default class Track extends Component {
     track: PropTypes.object,
   }
 
-  state = {
-    rms: [0, 0],
-  }
-
-  componentWillMount() {
-    this.unsubscribe = raf(this.analyserHandler.bind(this))
-  }
-
-  componentWillUnmount() {
-    if (this.unsubscribe) {
-      this.unsubscribe()
-    }
-  }
-
-  analyserHandler = () => {
-    const rms = this.props.track.analyser.getRms().map(rms => rms * 100)
-    this.setState({ rms })
-  }
-
   onSelectChange = (evt) => {
     const channel = state.mixer.channels[evt.target.value]
     this.props.track.sends.forEach(send => this.props.track.disconnect(send))
     if (channel) {
       this.props.track.connect(channel)
     }
+  }
+
+  selectChangeBar = (evt) => {
+    this.props.track.setBar(evt.target.value)
+  }
+
+  setLabel = (text) => {
+    this.props.track.setLabel(text)
   }
 
   render() {
@@ -62,9 +50,7 @@ export default class Track extends Component {
           <div styleName='label item'>
             <EditableText
               text={this.props.track.label}
-              onSubmit={(text) => {
-                this.props.track.setLabel(text)
-              }}
+              onSubmit={this.setLabel}
             />
           </div>
 
@@ -92,9 +78,7 @@ export default class Track extends Component {
             </div>
             <select styleName='select'
               value={this.props.track.bar}
-              onChange={(evt) => {
-                this.props.track.setBar(evt.target.value)
-              }}>
+              onChange={this.selectChangeBar}>
               {
                 [1,2,3,4,5,6,7,8].map((value, i) => <option
                   key={i}
@@ -109,7 +93,7 @@ export default class Track extends Component {
 
         <div styleName='right'>
           <div styleName='meters'>
-            <SoundMeter rms={this.state.rms} featurePeak={false} />
+            <SoundMeter analyser={this.props.track.analyser} featurePeak={false} />
           </div>
         </div>
       </div>

@@ -3,12 +3,12 @@ import React, { Component, PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
 import { observer } from 'mobx-react'
 
-import { raf } from 'helpers'
 import Meter from '../../component/meter/meter.js'
 import Slider from '../../component/slider/slider.js'
 import Knob from '../../component/knob/knob.js'
-import SoundMeter from '../sound-meter/sound-meter.js'
+import SoundMeter from '../sound-meter-auto/sound-meter-auto.js'
 import EditableText from '../../component/editable-text/editable-text.js'
+import RmsReading from '../rms-reading/rms-reading.js'
 
 @observer
 @CSSModules(styles, {
@@ -18,25 +18,6 @@ import EditableText from '../../component/editable-text/editable-text.js'
 export default class Channel extends Component {
   static propTypes = {
     channel: PropTypes.object,
-  }
-
-  state = {
-    rms: [0, 0],
-    peak: [0, 0],
-  }
-
-  componentDidMount() {
-    this.unsubcribe = raf(this.analyserHandler.bind(this))
-  }
-
-  componentWillUnmount() {
-    this.unsubcribe()
-  }
-
-  analyserHandler = () => {
-    const rms = this.props.channel.analyser.getRms().map(rms => rms * 100)
-    const peak = this.props.channel.analyser.getPeaks().map(peak => peak * 100)
-    this.setState({ rms, peak })
   }
 
   setGain = (value) => {
@@ -78,7 +59,7 @@ export default class Channel extends Component {
       </div>
 
       <div styleName='gain'>
-        <SoundMeter rms={this.state.rms} peak={this.state.peak} />
+        <SoundMeter analyser={this.props.channel.analyser} featurePeak={true} />
 
         <div styleName='slider'>
           <Slider onSelect={this.setGain} value={channel.gain} />
@@ -86,14 +67,7 @@ export default class Channel extends Component {
       </div>
 
       <div styleName='end col'>
-        <div styleName='reading'>
-          <div>
-            {this.state.rms[0].toFixed(1)}
-          </div>
-          <div>
-            {this.state.rms[1].toFixed(1)}
-          </div>
-        </div>
+        <RmsReading analyser={this.props.channel.analyser} className={styles.reading}/>
 
         <div styleName='label'>
           <EditableText
