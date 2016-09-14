@@ -18,6 +18,7 @@ import RmsReading from '../rms-reading/rms-reading.js'
 export default class Channel extends Component {
   static propTypes = {
     channel: PropTypes.object,
+    position: PropTypes.number,
   }
 
   setGain = (value) => {
@@ -70,7 +71,7 @@ export default class Channel extends Component {
         <RmsReading analyser={this.props.channel.analyser} className={styles.reading}/>
 
         <div styleName='label'>
-          <EditableText
+          {this.props.position}: <EditableText
             text={channel.label}
             onSubmit={this.setLabel}
           />
