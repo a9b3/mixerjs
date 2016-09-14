@@ -12,6 +12,7 @@ export default class Track extends UnitInterface {
 
   @observable bar = 2
   @observable beat = 4
+  @observable url = undefined
 
   analyser = new Analyser()
   soundSource = new SoundSource()
@@ -38,6 +39,7 @@ export default class Track extends UnitInterface {
   }
 
   async load(url) {
+    this.url = url
     await this.soundSource.load(url)
   }
 
