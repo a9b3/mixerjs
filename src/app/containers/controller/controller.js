@@ -48,20 +48,24 @@ export default class Controller extends Component {
     return str
   }
 
+  setTempo = (text) => {
+    state.controller.setTempo(Number(text))
+  }
+
+  validateTempo = (text) => {
+    if (!Number(text)) {
+      throw new Error('must be number')
+    }
+  }
+
   render() {
     return <div styleName='controller'>
       <div styleName='section'>
         <div styleName='display item'>
           <EditableText
             text={state.controller.bpm.toFixed(2)}
-            validate={(text) => {
-              if (!Number(text)) {
-                throw new Error('must be number')
-              }
-            }}
-            onSubmit={(text) => {
-              state.controller.setTempo(Number(text))
-            }}
+            validate={this.validateTempo}
+            onSubmit={this.setTempo}
           />
         </div>
 
