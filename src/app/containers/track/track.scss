@@ -30,10 +30,19 @@
 .item {
   padding: 5px;
   composes: flex-row;
+  align-items: center;
 }
 
 .label {
-  composes: semi-bold;
+  composes: flex-row semi-bold;
+  align-items: center;
+  padding: 0 5px;
+  background: lighten($dark_6, 10);
+  box-shadow: 0 2px 2px rgba(black, .1);
+
+  >* {
+    padding: 5px;
+  }
 }
 
 .select {
@@ -41,8 +50,16 @@
   max-width: 100%;
 }
 
-.label.item {
-  padding: 5px 10px;
-  background: lighten($dark_6, 10);
-  box-shadow: 0 2px 2px rgba(black, .1);
+.buttons {
+  composes: flex-row;
+  flex-wrap: wrap;
+
+  >* {
+    margin: 5px;
+  }
+}
+
+.file {
+  padding-left: 5px;
+  background: $dark_4;
 }

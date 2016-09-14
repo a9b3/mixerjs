@@ -24,6 +24,7 @@ export default class Mixer extends Component {
         {this.props.mixer.channels.map((channel, i) => <Channel
           key={`channel_${i}`}
           channel={channel}
+          position={i+1}
         /> )}
       </div>
 

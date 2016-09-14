@@ -9,6 +9,7 @@ import Mixer from '../mixer/mixer.js'
 import ActionModals from '../action-modals/action-modals.js'
 import TrackList from '../track-list/track-list.js'
 import Controller from '../controller/controller.js'
+import ReactPerf from '../../component/react-perf/react-perf.js'
 
 import favicon from 'assets/favicons/favicon.ico'
 import hhmp3 from '../../../assets/drumkit/hh.wav'
@@ -96,6 +97,9 @@ export default class Main extends Component {
 
   render() {
     return <div styleName='main'>
+      {
+        CONFIG.debug && <ReactPerf />
+      }
       <Helmet title='Mixerjs - Beat maker'
         link={[{
           rel: 'icon',
