@@ -1,0 +1,48 @@
+@import '~esayemm-styles/shared';
+
+$bg_color: $dark_5;
+$color: $dark_3;
+
+.mini-dropdown {
+  composes: flex-row;
+  height: 100%;
+  font-size: 12px;
+  display: inline-flex;
+  background: $bg_color;
+  color: $color;
+  border-radius: 5px;
+  border: 1px solid darken($bg_color, 10);
+
+  >* {
+    padding: 2px;
+  }
+}
+
+.item {
+  border-right: 1px solid darken($bg_color, 10);
+}
+
+.item + .item {
+  border-right: 0;
+}
+
+.label {
+  composes: semi-bold;
+}
+
+.select {
+  cursor: pointer;
+  composes: semi-bold;
+  color: $color;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  appearance: none;
+  overflow: hidden;
+  max-width: 100%;
+}
+.select:active, .select:focus {
+  border: 0;
+  outline: 0;
+}
