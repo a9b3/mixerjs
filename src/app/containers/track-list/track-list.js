@@ -17,6 +17,11 @@ export default class TrackList extends Component {
     trackList: PropTypes.object,
   }
 
+  addTrack = () => {
+    const track = this.props.trackList.addTrack({ label: 'default' })
+    state.controller.addHandler(track.handler)
+  }
+
   render() {
     return <div styleName='track-list'>
       <div styleName='cols'>
@@ -31,6 +36,11 @@ export default class TrackList extends Component {
             </div>
           </div>
         })}
+        <div styleName='row add' onClick={this.addTrack}>
+          <div style={{ color: 'white' }}>
+            <i className='fa fa-plus'></i>
+          </div>
+        </div>
       </div>
     </div>
   }
