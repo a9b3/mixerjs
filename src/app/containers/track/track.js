@@ -51,6 +51,11 @@ export default class Track extends Component {
     this.setState({ inputLabel: file.name })
   }
 
+  removeTrack = () => {
+    state.controller.removeHandler(this.props.track.handler)
+    state.trackList.removeTrack(this.props.track)
+  }
+
   render() {
     let selected
     if (this.props.track.sends.length > 0) {
@@ -71,6 +76,9 @@ export default class Track extends Component {
               onSubmit={this.setLabel}
               validate={this.validateLabel}
             />
+            <div styleName='end' onClick={this.removeTrack}>
+              <i className='fa fa-close'></i>
+            </div>
           </div>
 
           <div styleName='file'>

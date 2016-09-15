@@ -91,7 +91,7 @@ export default class Main extends Component {
     ])
 
     state.trackList.tracks.forEach(track => {
-      state.controller.addHandler(track.handler.bind(track.handler))
+      state.controller.addHandler(track.handler)
     })
   }
 

@@ -7,6 +7,7 @@ export default class TrackList {
   addTrack(...args) {
     const track = new Track(...args)
     this.tracks.push(track)
+    return track
   }
 
   removeTrack(track) {
