@@ -109,6 +109,10 @@ export default class Main extends Component {
         }]}
       />
 
+      <a styleName='social' href='https://github.com/esayemm/mixerjs' target='_blank'>
+        <i className='fa fa-github'></i>
+      </a>
+
       <ActionModals actionModals={state.actionModals} />
 
       <div styleName='row'>
