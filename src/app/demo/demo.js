@@ -2,16 +2,14 @@ import styles from './demo.scss'
 import React, { Component, PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
 
-import Meter from '../component/meter/meter.js'
-import EditableText from '../component/editable-text/editable-text.js'
-import Controller from '../containers/controller/controller.js'
-import TrackComponent from '../containers/track/track.js'
-import Track from '../mixer/Track.js'
-import SoundMeter from '../containers/sound-meter/sound-meter.js'
-import Slider from '../component/slider/slider.js'
-import Knob from '../component/knob/knob.js'
+import {
+  SoundSource,
+  audioContext,
+  ConvolverNode,
+  Channel,
+} from 'mixer'
 
-const track = new Track({ label: 'yo' })
+import url from '../../assets/drumkit/chant.wav'
 
 @CSSModules(styles, {
   allowMultiple: true,
@@ -26,29 +24,25 @@ export default class Demo extends Component {
 
   }
 
-  state = {
-    text: 'hello world',
-    value: 0,
-  }
+  async componentDidMount() {
+    const convolverNode = new ConvolverNode()
 
-  componentDidMount() {
-    setInterval(() => {
-      this.setState({
-        value: Math.random() * 100,
-      })
-    }, 100)
+    const channel = new Channel()
+    channel.outputNode.connect(audioContext.destination)
+
+    channel.addFxNode(convolverNode)
+
+    const soundSource = new SoundSource()
+    soundSource.connect(channel)
+    await soundSource.load(url)
+    soundSource.play()
   }
 
   render() {
     return <div styleName='demo'>
-
-      <div style={{
-        width: '100px',
-        height: '100px',
-      }}>
-        <Knob value={-1}></Knob>
+      <div>
+        hi
       </div>
-      <TrackComponent track={track}></TrackComponent>
     </div>
   }
 }
