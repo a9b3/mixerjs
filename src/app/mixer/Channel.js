@@ -1,3 +1,15 @@
+/*
+ * ex.
+ *
+ * const channel = new Channel()
+ * channel.outputNode.connect(audioContext.destination)
+ *
+ * fooUnitNode.connect(channel)
+ *
+ * // use fx nodes
+ * const convolverNode = audioContext.createConvolverNode()
+ * channel.addFxNode(convolverNode)
+ */
 import audioContext from './audioContext.js'
 import UnitInterface from './UnitInterface.js'
 import Analyser from './Analyser.js'
@@ -6,6 +18,7 @@ import uuid from 'node-uuid'
 
 export default class Channel extends UnitInterface {
   id = uuid.v4() // TODO (sam) mixer should store channel as a map instead of arr
+  fx = []
   analyser = new Analyser()
   panner = audioContext.createPanner()
   @observable panPosition = 0
@@ -52,5 +65,29 @@ export default class Channel extends UnitInterface {
   toggleMute() {
     this.outputNode.toggleMute()
     this.isMute = this.outputNode.isMute
+  }
+
+  addFxNode(node, index = this.fx.length) {
+    this.fx.splice(index, 0, node)
+
+    let beforeNode = index - 1 < 0 ? this.inputNode : this.fx[index - 1]
+    let afterNode = index + 1 > this.fx.length - 1 ? this.panner : this.fx[index + 1]
+
+    beforeNode.disconnect()
+    // accept UnitInterface or raw AudioNode
+    beforeNode.connect(this.fx[index].inputNode || this.fx[index])
+
+    this.fx[index].connect(afterNode)
+  }
+
+  removeFxNode(node) {
+    const index = this.fx.indexOf(node)
+    this.fx.splice(index, 1)
+
+    let beforeNode = index - 1 < 0 ? this.inputNode : this.fx[index - 1]
+    let afterNode = index + 1 > this.fx.length - 1 ? this.panner : this.fx[index + 1]
+
+    beforeNode.disconnect()
+    beforeNode.connect(afterNode)
   }
 }
