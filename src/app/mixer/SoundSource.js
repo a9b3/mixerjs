@@ -1,3 +1,16 @@
+/*
+ * SoundSource ex.
+ *
+ * const soundSource = new SoundSource()
+ *
+ * // raw audio node
+ * soundSource.outputNode.connect(audioContext.destination)
+ * // another unit
+ * soundSource.connect(unitNode)
+ *
+ * await soundSource.load(url)
+ * soundSource.play()
+ */
 import invariant from 'invariant'
 import audioContext from './audioContext.js'
 import UnitInterface from './UnitInterface.js'
@@ -35,7 +48,6 @@ const helper = {
     })
   },
 }
-
 
 /*
  * A SoundSource encapsulates logic regarding the loading and playing of a
