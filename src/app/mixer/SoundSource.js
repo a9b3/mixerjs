@@ -15,39 +15,7 @@ import invariant from 'invariant'
 import audioContext from './audioContext.js'
 import UnitInterface from './UnitInterface.js'
 import { observable } from 'mobx'
-
-const helper = {
-  /**
-   * Wrap call to return promise.
-   *
-   * @param {String} url - url to get arraybuffer for
-   * @returns {Promise.resolve(ArrayBuffer)}
-   */
-  getBuffer(url) {
-    return new Promise((resolve, reject) => {
-      const request = new XMLHttpRequest()
-      request.open('GET', url, true)
-      request.responseType = 'arraybuffer'
-
-      request.onload = () => {
-        resolve(request.response)
-      }
-      request.send()
-    })
-  },
-
-  /**
-   * Wrap decodeAudioData to return promise.
-   *
-   * @param {ArrayBuffer} arrayBuffer - return from getBuffer
-   * @returns {Promise.resolve(AudioBuffer)}
-   */
-  decodeAudioData(arrayBuffer) {
-    return new Promise((resolve, reject) => {
-      audioContext.decodeAudioData(arrayBuffer, resolve, reject)
-    })
-  },
-}
+import { getAudioBuffer } from './helpers'
 
 /*
  * A SoundSource encapsulates logic regarding the loading and playing of a
@@ -76,8 +44,8 @@ export default class Sound extends UnitInterface {
     this.ready = false
     this.audioBuffer = undefined
     this.url = url
-    const buffer = await helper.getBuffer(url)
-    this.audioBuffer = await helper.decodeAudioData(buffer)
+
+    this.audioBuffer = await getAudioBuffer(url)
     this.ready = true
   }
 
