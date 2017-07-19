@@ -20,6 +20,8 @@
     "eslint-config-esayemm": "^0.2.3",
     "eslint-plugin-react": "^5.0.1",
     "jbs-fe": "^0.0.28",
+    "kontinuum-route53": "^0.1.3",
+    "kontinuum-s3-deploy": "^0.1.3",
     "react-hot-loader": "3.0.0-beta.2"
   },
   "dependencies": {
