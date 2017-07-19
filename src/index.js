@@ -5,13 +5,8 @@ import 'styles/index.scss'
 import React               from 'react'
 import { render }          from 'react-dom'
 import { browserHistory }  from 'react-router'
-import useScroll           from 'scroll-behavior'
 import { AppContainer }    from 'react-hot-loader'
 import Root                from './root.js'
-
-// if (CONFIG.debug === false && navigator.serviceWorker) {
-//   navigator.serviceWorker.register('/service-worker.js')
-// }
 
 const history = browserHistory
 
