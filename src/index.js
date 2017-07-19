@@ -1,4 +1,6 @@
 // app entry point
+import 'react-hot-loader/patch'
+import '!style-loader!css-loader!font-awesome/css/font-awesome.css'
 import 'styles/index.scss'
 import React               from 'react'
 import { render }          from 'react-dom'
@@ -11,7 +13,7 @@ import Root                from './root.js'
 //   navigator.serviceWorker.register('/service-worker.js')
 // }
 
-const history = useScroll(browserHistory)
+const history = browserHistory
 
 render(
   <AppContainer>
