@@ -1,8 +1,0 @@
-node_modules/
-.DS_STORE
-build/
-static/
-dist/
-nohup.out
-Session.vim
-stats.json
