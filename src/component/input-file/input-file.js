@@ -5,24 +5,24 @@ import pureRender from '../../helpers/pure-render.js'
 
 @pureRender
 @CSSModules(styles, {
-  allowMultiple: true,
-  errorWhenNotFound: false,
+  allowMultiple     : true,
+  errorWhenNotFound : false,
 })
 export default class InputFile extends Component {
   static propTypes = {
-    label: PropTypes.string,
-    onChange: PropTypes.func,
+    label    : PropTypes.string,
+    onChange : PropTypes.func,
   }
 
   static defaultProps = {
-    label: 'Choose a file',
-    onChange: new Function(),
+    label    : 'Choose a file',
+    onChange : new Function(),
   }
 
   onChange = (evt) => {
     evt.preventDefault()
 
-    let files = evt.dataTransfer ? evt.dataTransfer.files : evt.target.files
+    const files = evt.dataTransfer ? evt.dataTransfer.files : evt.target.files
     for (let i = 0; i < files.length; i++) {
       files[i].preview = window.URL.createObjectURL(files[i])
     }

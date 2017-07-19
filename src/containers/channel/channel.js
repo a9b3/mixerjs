@@ -12,13 +12,13 @@ import RmsReading from '../rms-reading/rms-reading.js'
 
 @observer
 @CSSModules(styles, {
-  allowMultiple: true,
-  errorWhenNotFound: false,
+  allowMultiple     : true,
+  errorWhenNotFound : false,
 })
 export default class Channel extends Component {
   static propTypes = {
-    channel: PropTypes.object,
-    position: PropTypes.number,
+    channel  : PropTypes.object,
+    position : PropTypes.number,
   }
 
   setGain = (value) => {

@@ -23,7 +23,7 @@ render(
 )
 
 if (module.hot) {
-  let HotRoot = require('./root.js').default
+  const HotRoot = require('./root.js').default
 
   module.hot.accept('./styles/index.scss', () => {
     require('./styles/index.scss')

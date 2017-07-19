@@ -7,25 +7,25 @@ import pureRender from 'helpers/pure-render'
 
 @pureRender
 @CSSModules(styles, {
-  allowMultiple: true,
-  errorWhenNotFound: false,
+  allowMultiple     : true,
+  errorWhenNotFound : false,
 })
 export default class SoundMeter extends Component {
   static propTypes = {
-    rms: PropTypes.any,
-    peak: PropTypes.any,
-    featureHorizontal: PropTypes.bool,
+    rms               : PropTypes.any,
+    peak              : PropTypes.any,
+    featureHorizontal : PropTypes.bool,
   }
 
   static defaultProps = {
-    rms: [0, 0],
-    peak: [0, 0],
-    featureHorizontal: false,
+    rms               : [0, 0],
+    peak              : [0, 0],
+    featureHorizontal : false,
   }
 
   getStyle() {
     const style = {
-      flexDirection: this.props.featureHorizontal ? 'column' : 'row',
+      flexDirection : this.props.featureHorizontal ? 'column' : 'row',
     }
     return style
   }

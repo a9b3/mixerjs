@@ -5,24 +5,24 @@ import pureRender from 'helpers/pure-render'
 
 @pureRender
 @CSSModules(styles, {
-  allowMultiple: true,
-  errorWhenNotFound: false,
+  allowMultiple     : true,
+  errorWhenNotFound : false,
 })
 export default class Knob extends Component {
   static propTypes = {
-    onSelect: PropTypes.func,
-    pxRange: PropTypes.number,
-    value: PropTypes.number,
+    onSelect : PropTypes.func,
+    pxRange  : PropTypes.number,
+    value    : PropTypes.number,
   }
 
   static defaultProps = {
-    onSelect: () => {},
-    pxRange: 120,
-    value: 0,
+    onSelect : () => {},
+    pxRange  : 120,
+    value    : 0,
   }
 
   state = {
-    position: 0,
+    position : 0,
   }
 
   onMouseDown = (evt) => {
@@ -52,19 +52,19 @@ export default class Knob extends Component {
   onDoubleClick = () => {
     this.props.onSelect(0)
     this.setState({
-      position: 0,
+      position : 0,
     })
   }
 
   _select = (evt) => {
-    let diff = this.startPosition - evt.clientY
+    const diff = this.startPosition - evt.clientY
 
     if (Math.abs(diff) > this.props.pxRange) return
 
     const percentage = diff/this.props.pxRange
     this.props.onSelect(percentage)
     this.setState({
-      position: diff,
+      position : diff,
     })
   }
 
@@ -72,7 +72,7 @@ export default class Knob extends Component {
     const pos = this.props.value * this.props.pxRange
 
     return {
-      transform: `rotate(${pos}deg)`,
+      transform : `rotate(${pos}deg)`,
     }
   }
 

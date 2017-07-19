@@ -21,8 +21,8 @@ import chantmp3 from 'assets/drumkit/chant.wav'
 
 @observer
 @CSSModules(styles, {
-  allowMultiple: true,
-  errorWhenNotFound: false,
+  allowMultiple     : true,
+  errorWhenNotFound : false,
 })
 export default class Main extends Component {
   async componentDidMount() {
@@ -98,10 +98,10 @@ export default class Main extends Component {
     return <div styleName='main'>
       <Helmet title='Mixerjs - Beat maker'
         link={[{
-          rel: 'icon',
-          type: 'image/ico',
-          sizes: '16x16',
-          href: favicon,
+          rel   : 'icon',
+          type  : 'image/ico',
+          sizes : '16x16',
+          href  : favicon,
         }]}
       />
 

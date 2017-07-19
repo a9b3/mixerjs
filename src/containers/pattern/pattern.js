@@ -13,23 +13,23 @@ function getCurrentTick(currentBar, currentBeat, i, notesPerBeat) {
 
 @observer
 @CSSModules(styles, {
-  allowMultiple: true,
-  errorWhenNotFound: false,
+  allowMultiple     : true,
+  errorWhenNotFound : false,
 })
 export default class Pattern extends Component {
   static propTypes = {
-    bar: PropTypes.number,
-    beat: PropTypes.number,
-    track: PropTypes.any,
+    bar   : PropTypes.number,
+    beat  : PropTypes.number,
+    track : PropTypes.any,
   }
 
   static defaultProps = {
-    beat: 4,
+    beat : 4,
   }
 
   state = {
-    currentTick: 0,
-    notesPerBeat: 8,
+    currentTick  : 0,
+    notesPerBeat : 8,
   }
 
   componentDidMount() {
@@ -65,7 +65,7 @@ export default class Pattern extends Component {
     ].filter(a => a).join(' ')
   }
   renderNotes = (bar, beat, currentBar, currentBeat) => {
-    let notes = []
+    const notes = []
     let currentTick = 0
     for (let i = 0; i < this.state.notesPerBeat; i++) {
       currentTick = getCurrentTick(currentBar, currentBeat, i, this.state.notesPerBeat)
@@ -81,7 +81,7 @@ export default class Pattern extends Component {
   }
 
   renderBeats = (bar, beat, currentBar) => {
-    let beats = []
+    const beats = []
     for (let i = 0; i < beat; i++) {
       beats.push(
         <div styleName='beat' key={`beat_${i}`}>
@@ -93,7 +93,7 @@ export default class Pattern extends Component {
   }
 
   renderBars = (bar, beat) => {
-    let bars = []
+    const bars = []
     for (let i = 0; i < bar; i++) {
       bars.push(
         <div styleName='bar' key={`bar_${i}`}>

@@ -1,9 +1,9 @@
 import { observable } from 'mobx'
 
 const types = {
-  add: {
-    display: 'Add Channel',
-    key: 'add',
+  add : {
+    display : 'Add Channel',
+    key     : 'add',
   },
 }
 

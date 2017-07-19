@@ -7,18 +7,18 @@ import Add from './add/add.js'
 
 @observer
 @CSSModules(styles, {
-  allowMultiple: true,
-  errorWhenNotFound: false,
+  allowMultiple     : true,
+  errorWhenNotFound : false,
 })
 export default class ActionModals extends Component {
   static propTypes = {
-    actionModals: PropTypes.object,
+    actionModals : PropTypes.object,
   }
 
   renderModal = (key) => {
     switch(key) {
-      case 'add':
-        return <Add />
+    case 'add':
+      return <Add />
     }
   }
 

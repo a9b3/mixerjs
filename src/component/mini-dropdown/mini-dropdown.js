@@ -5,15 +5,15 @@ import pureRender from '../../helpers/pure-render.js'
 
 @pureRender
 @CSSModules(styles, {
-  allowMultiple: true,
-  errorWhenNotFound: false,
+  allowMultiple     : true,
+  errorWhenNotFound : false,
 })
 export default class MiniDropdown extends Component {
   static propTypes = {
-    label: PropTypes.string.isRequired,
-    value: PropTypes.any,
-    onChange: PropTypes.func.isRequired,
-    options: PropTypes.any.isRequired,
+    label    : PropTypes.string.isRequired,
+    value    : PropTypes.any,
+    onChange : PropTypes.func.isRequired,
+    options  : PropTypes.any.isRequired,
   }
 
   state = {

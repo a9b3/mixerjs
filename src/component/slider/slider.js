@@ -5,25 +5,25 @@ import pureRender from 'helpers/pure-render'
 
 @pureRender
 @CSSModules(styles, {
-  allowMultiple: true,
-  errorWhenNotFound: false,
+  allowMultiple     : true,
+  errorWhenNotFound : false,
 })
 export default class Slider extends Component {
   static propTypes = {
-    value: PropTypes.number,
-    onSelect: PropTypes.func,
+    value    : PropTypes.number,
+    onSelect : PropTypes.func,
   }
 
   static defaultProps = {
-    value: 0,
-    onSelect: () => {},
+    value    : 0,
+    onSelect : () => {},
   }
 
   mouseClickOffset = null
   buttonEl = null
   state = {
-    position: {
-      y: 0,
+    position : {
+      y : 0,
     },
   }
 
@@ -59,8 +59,8 @@ export default class Slider extends Component {
     this.props.onSelect(value)
 
     this.setState({
-      position: {
-        y: yPos,
+      position : {
+        y : yPos,
       },
     })
   }
@@ -82,7 +82,7 @@ export default class Slider extends Component {
     const top = height - (this.props.value * height)
 
     return {
-      top: `${top}px`,
+      top : `${top}px`,
     }
   }
 

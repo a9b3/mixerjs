@@ -5,8 +5,8 @@ import CSSModules from 'react-css-modules'
 import state from 'state'
 
 @CSSModules(styles, {
-  allowMultiple: true,
-  errorWhenNotFound: false,
+  allowMultiple     : true,
+  errorWhenNotFound : false,
 })
 export default class ActionBar extends Component {
   render() {

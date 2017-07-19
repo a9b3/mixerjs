@@ -10,21 +10,21 @@ import EditableText from '../../component/editable-text/editable-text.js'
 
 @observer
 @CSSModules(styles, {
-  allowMultiple: true,
-  errorWhenNotFound: false,
+  allowMultiple     : true,
+  errorWhenNotFound : false,
 })
 export default class Controller extends Component {
   state = {
-    startTime: Date.now(),
-    isPlaying: false,
+    startTime : Date.now(),
+    isPlaying : false,
   }
 
   play = () => {
     state.controller.play()
 
     this.setState({
-      startTime: Date.now(),
-      isPlaying: true,
+      startTime : Date.now(),
+      isPlaying : true,
     })
 
     this.unsubscribe = raf(() => {
@@ -36,7 +36,7 @@ export default class Controller extends Component {
     state.controller.stop()
     this.unsubscribe()
     this.setState({
-      isPlaying: false,
+      isPlaying : false,
     })
   }
 

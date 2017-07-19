@@ -12,16 +12,16 @@ import InputFile from '../../component/input-file/input-file.js'
 
 @observer
 @CSSModules(styles, {
-  allowMultiple: true,
-  errorWhenNotFound: false,
+  allowMultiple     : true,
+  errorWhenNotFound : false,
 })
 export default class Track extends Component {
   static propTypes = {
-    track: PropTypes.object,
+    track : PropTypes.object,
   }
 
   state = {
-    inputLabel: null,
+    inputLabel : null,
   }
 
   onSelectChange = (value) => {

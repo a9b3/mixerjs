@@ -13,8 +13,8 @@ import {
 // import wav from '../../../../../../Desktop/large-hall.wav'
 
 @CSSModules(styles, {
-  allowMultiple: true,
-  errorWhenNotFound: false,
+  allowMultiple     : true,
+  errorWhenNotFound : false,
 })
 export default class Demo extends Component {
   static propTypes = {

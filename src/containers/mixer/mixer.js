@@ -8,12 +8,12 @@ import ActionBar from './action-bar/action-bar.js'
 
 @observer
 @CSSModules(styles, {
-  allowMultiple: true,
-  errorWhenNotFound: false,
+  allowMultiple     : true,
+  errorWhenNotFound : false,
 })
 export default class Mixer extends Component {
   static propTypes = {
-    mixer: PropTypes.object,
+    mixer : PropTypes.object,
   }
 
   render() {

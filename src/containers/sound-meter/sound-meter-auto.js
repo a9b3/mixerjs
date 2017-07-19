@@ -5,19 +5,19 @@ import { raf } from 'helpers'
 
 export default class SoundMeterAuto extends Component {
   static propTypes = {
-    analyser: PropTypes.any,
-    featurePeak: PropTypes.bool,
-    featureRms: PropTypes.bool,
+    analyser    : PropTypes.any,
+    featurePeak : PropTypes.bool,
+    featureRms  : PropTypes.bool,
   }
 
   static defaultProps = {
-    featurePeak: false,
-    featureRms: true,
+    featurePeak : false,
+    featureRms  : true,
   }
 
   state = {
-    rms: [0, 0],
-    peak: [0, 0],
+    rms  : [0, 0],
+    peak : [0, 0],
   }
 
   componentDidMount() {

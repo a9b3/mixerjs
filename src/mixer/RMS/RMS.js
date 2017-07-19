@@ -11,8 +11,8 @@ function calcRmsAndPeak(arr) {
     }
   }
   return {
-    rms: Math.sqrt(sum / arr.length),
-    peak: max,
+    rms  : Math.sqrt(sum / arr.length),
+    peak : max,
   }
 }
 

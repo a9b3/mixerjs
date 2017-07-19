@@ -7,12 +7,12 @@ import state from 'state'
 
 @observer
 @CSSModules(styles, {
-  allowMultiple: true,
-  errorWhenNotFound: false,
+  allowMultiple     : true,
+  errorWhenNotFound : false,
 })
 export default class Timer extends Component {
   state = {
-    currentBeat: 0,
+    currentBeat : 0,
   }
 
   componentDidMount() {
@@ -29,12 +29,12 @@ export default class Timer extends Component {
     }
 
     this.setState({
-      currentBeat: beat,
+      currentBeat : beat,
     })
   }
 
   renderBeats = () => {
-    let beats = []
+    const beats = []
     let counter = 0
     for (let i = 0; i < state.controller.bar; i++) {
       for (let j = 0; j < state.controller.beat * 8; j++) {

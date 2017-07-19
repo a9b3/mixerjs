@@ -70,8 +70,8 @@ export default class Channel extends UnitInterface {
   addFxNode(node, index = this.fx.length) {
     this.fx.splice(index, 0, node)
 
-    let beforeNode = index - 1 < 0 ? this.inputNode : this.fx[index - 1]
-    let afterNode = index + 1 > this.fx.length - 1 ? this.panner : this.fx[index + 1]
+    const beforeNode = index - 1 < 0 ? this.inputNode : this.fx[index - 1]
+    const afterNode = index + 1 > this.fx.length - 1 ? this.panner : this.fx[index + 1]
 
     beforeNode.disconnect()
     // accept UnitInterface or raw AudioNode
@@ -84,8 +84,8 @@ export default class Channel extends UnitInterface {
     const index = this.fx.indexOf(node)
     this.fx.splice(index, 1)
 
-    let beforeNode = index - 1 < 0 ? this.inputNode : this.fx[index - 1]
-    let afterNode = index + 1 > this.fx.length - 1 ? this.panner : this.fx[index + 1]
+    const beforeNode = index - 1 < 0 ? this.inputNode : this.fx[index - 1]
+    const afterNode = index + 1 > this.fx.length - 1 ? this.panner : this.fx[index + 1]
 
     beforeNode.disconnect()
     beforeNode.connect(afterNode)

@@ -3,17 +3,17 @@ import React, { Component, PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
 
 @CSSModules(styles, {
-  allowMultiple: true,
-  errorWhenNotFound: false,
+  allowMultiple     : true,
+  errorWhenNotFound : false,
 })
 export default class CompatCheck extends Component {
   static propTypes = {
-    children: PropTypes.any,
+    children : PropTypes.any,
   }
 
   state = {
-    ready: false,
-    error: false,
+    ready : false,
+    error : false,
   }
 
   componentWillMount() {
@@ -23,7 +23,7 @@ export default class CompatCheck extends Component {
     }
 
     this.setState({
-      ready: true,
+      ready : true,
       error,
     })
   }

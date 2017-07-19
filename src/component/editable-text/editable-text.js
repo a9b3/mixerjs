@@ -5,28 +5,28 @@ import pureRender from 'helpers/pure-render'
 
 @pureRender
 @CSSModules(styles, {
-  allowMultiple: true,
-  errorWhenNotFound: false,
+  allowMultiple     : true,
+  errorWhenNotFound : false,
 })
 export default class EditableText extends Component {
   static propTypes = {
-    text: PropTypes.any,
-    validate: PropTypes.func,
-    onSubmit: PropTypes.func,
+    text     : PropTypes.any,
+    validate : PropTypes.func,
+    onSubmit : PropTypes.func,
   }
 
   static defaultProps = {
-    validate: () => {},
-    onSubmit: () => {},
+    validate : () => {},
+    onSubmit : () => {},
   }
 
   state = {
-    isEditing: false,
+    isEditing : false,
   }
 
   toggleIsEditing = () => {
     this.setState({
-      isEditing: !this.state.isEditing,
+      isEditing : !this.state.isEditing,
     })
   }
 

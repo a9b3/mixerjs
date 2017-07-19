@@ -3,11 +3,11 @@ import { raf } from 'helpers'
 
 export default class RmsReading extends Component {
   static propTypes = {
-    analyser: PropTypes.any,
+    analyser : PropTypes.any,
   }
 
   state = {
-    rms: [0, 0],
+    rms : [0, 0],
   }
 
   componentDidMount() {

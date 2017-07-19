@@ -3,12 +3,12 @@ import React, { Component, PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
 
 @CSSModules(styles, {
-  allowMultiple: true,
-  errorWhenNotFound: false,
+  allowMultiple     : true,
+  errorWhenNotFound : false,
 })
 export default class Waveshape extends Component {
   static propTypes = {
-    waveshape: PropTypes.array,
+    waveshape : PropTypes.array,
   }
 
   shouldComponentUpdate(nextProps) {
@@ -24,7 +24,7 @@ export default class Waveshape extends Component {
             key={`up_${i}`}
             styleName='bar'
             style={{
-              height: `${wave[0].max*50}px`,
+              height : `${wave[0].max*50}px`,
             }}
           />)
         }
@@ -35,7 +35,7 @@ export default class Waveshape extends Component {
             key={`down_${i}`}
             styleName='bar'
             style={{
-              height: `${Math.abs(wave[0].min*50)}px`,
+              height : `${Math.abs(wave[0].min*50)}px`,
             }}
           />)
         }

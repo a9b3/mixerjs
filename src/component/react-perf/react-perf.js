@@ -4,12 +4,12 @@ import CSSModules from 'react-css-modules'
 import Perf from 'react-addons-perf'
 
 @CSSModules(styles, {
-  allowMultiple: true,
-  errorWhenNotFound: false,
+  allowMultiple     : true,
+  errorWhenNotFound : false,
 })
 export default class ReactPerf extends Component {
   state = {
-    started: false,
+    started : false,
   }
 
   componentDidMount() {
@@ -22,23 +22,23 @@ export default class ReactPerf extends Component {
 
   handleKeyDown = (evt) => {
     switch(evt.key) {
-      case 'z':
-        if (this.state.started) {
-          this.stop()
-        }
-        this.start()
-        break
-      case 'x':
-        if (this.state.started) {
-          this.stop()
-        }
-        break
-      case 'c':
-        if (this.state.started) {
-          this.stop()
-        }
-        this.printWasted()
-        break;
+    case 'z':
+      if (this.state.started) {
+        this.stop()
+      }
+      this.start()
+      break
+    case 'x':
+      if (this.state.started) {
+        this.stop()
+      }
+      break
+    case 'c':
+      if (this.state.started) {
+        this.stop()
+      }
+      this.printWasted()
+      break
     }
   }
 

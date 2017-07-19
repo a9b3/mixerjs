@@ -9,12 +9,12 @@ import state from 'state'
 
 @observer
 @CSSModules(styles, {
-  allowMultiple: true,
-  errorWhenNotFound: false,
+  allowMultiple     : true,
+  errorWhenNotFound : false,
 })
 export default class TrackList extends Component {
   static propTypes = {
-    trackList: PropTypes.object,
+    trackList : PropTypes.object,
   }
 
   addTrack = () => {

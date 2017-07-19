@@ -51,13 +51,13 @@ function deepDiff(o1, o2, name) {
 export default (ComposedComponent) => class extends Component {
   componentDidUpdate(prevProps, prevState) {
     const prev = {
-      props: prevProps,
-      state: prevState,
+      props : prevProps,
+      state : prevState,
     }
 
     const current = {
-      props: this.props,
-      state: this.state,
+      props : this.props,
+      state : this.state,
     }
 
     deepDiff(prev, current, ComposedComponent.displayName)
