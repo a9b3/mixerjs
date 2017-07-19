@@ -1,5 +1,5 @@
 import audioContext from '../audioContext.js'
-import IntervalWorker from 'worker!./interval-worker.js'
+import IntervalWorker from 'worker-loader!./interval-worker.js'
 
 export default class Scheduler {
   worker = null

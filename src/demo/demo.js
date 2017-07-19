@@ -9,8 +9,8 @@ import {
   Channel,
 } from 'mixer'
 
-import url from '../../assets/drumkit/chant.wav'
-import wav from '../../../../../../Desktop/large-hall.wav'
+// import url from '../../assets/drumkit/chant.wav'
+// import wav from '../../../../../../Desktop/large-hall.wav'
 
 @CSSModules(styles, {
   allowMultiple: true,
@@ -32,11 +32,11 @@ export default class Demo extends Component {
     channel.outputNode.connect(audioContext.destination)
 
     channel.addFxNode(convolverNode)
-    await convolverNode.load(wav)
+    // await convolverNode.load(wav)
 
     const soundSource = new SoundSource()
     soundSource.connect(channel)
-    await soundSource.load(url)
+    // await soundSource.load(url)
     soundSource.play()
   }
 

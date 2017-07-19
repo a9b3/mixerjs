@@ -9,16 +9,15 @@ import Mixer from '../mixer/mixer.js'
 import ActionModals from '../action-modals/action-modals.js'
 import TrackList from '../track-list/track-list.js'
 import Controller from '../controller/controller.js'
-import ReactPerf from '../../component/react-perf/react-perf.js'
 
 import favicon from 'assets/favicons/favicon.ico'
-import hhmp3 from '../../../assets/drumkit/hh.wav'
-import kickmp3 from '../../../assets/drumkit/kick.wav'
-import snaremp3 from '../../../assets/drumkit/snare.wav'
-import clapmp3 from '../../../assets/drumkit/clap.wav'
-import percmp3 from '../../../assets/drumkit/perc.wav'
-import shakermp3 from '../../../assets/drumkit/shaker.wav'
-import chantmp3 from '../../../assets/drumkit/chant.wav'
+import hhmp3 from 'assets/drumkit/hh.wav'
+import kickmp3 from 'assets/drumkit/kick.wav'
+import snaremp3 from 'assets/drumkit/snare.wav'
+import clapmp3 from 'assets/drumkit/clap.wav'
+import percmp3 from 'assets/drumkit/perc.wav'
+import shakermp3 from 'assets/drumkit/shaker.wav'
+import chantmp3 from 'assets/drumkit/chant.wav'
 
 @observer
 @CSSModules(styles, {
@@ -97,9 +96,6 @@ export default class Main extends Component {
 
   render() {
     return <div styleName='main'>
-      {
-        CONFIG.debug && <ReactPerf />
-      }
       <Helmet title='Mixerjs - Beat maker'
         link={[{
           rel: 'icon',
