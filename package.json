@@ -8,7 +8,10 @@
     "build": "rm -rf ./build && BABEL_REACT=true NODE_PATH=./src:./src/app ./node_modules/jbs-fe/bin.js build",
     "start": "BABEL_REACT=true NODE_PATH=./src:./src/app ./node_modules/jbs-fe/bin.js dev",
     "test": "BABEL_REACT=true NODE_ENV=test ./node_modules/jbs-fe/bin.js test --single-run",
-    "test:watch": "BABEL_REACT=true NODE_ENV=test ./node_modules/jbs-fe/bin.js test"
+    "test:watch": "BABEL_REACT=true NODE_ENV=test ./node_modules/jbs-fe/bin.js test",
+    "deploy:s3": "./node_modules/kontinuum-s3-deploy/script.sh --name mixer.esayemm.com ./build",
+    "deploy:route53": "./node_modules/kontinuum-route53/script.sh --name mixer.esayemm.com --root esayemm.com",
+    "deploy-example": "npm run build:example && npm run deploy:s3 && npm run deploy:route53"
   },
   "author": "Sam Lau",
   "license": "ISC",
